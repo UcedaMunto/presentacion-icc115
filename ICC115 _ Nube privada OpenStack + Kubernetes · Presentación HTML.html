@@ -1991,8 +1991,21 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
       <h3>Notas del presentador</h3>
       <p id="notesText">Sin notas.</p>
     </div>
-    <div class="overlay" id="imageOverlay" role="dialog" aria-label="Vista ampliada de figura">
-      <img alt="Figura ampliada" />
+    <div
+      class="overlay"
+      id="imageOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Vista ampliada de figura"
+      aria-describedby="imageHelp"
+    >
+      <img alt="Figura ampliada" draggable="false" />
+      <div class="image-controls">
+        <span id="imageHelp">Rueda: acercar / alejar · Arrastra para mover · Esc: cerrar</span>
+        <output id="imageZoom" aria-label="Nivel de zoom">100 %</output>
+        <button id="resetImageZoom" type="button">Restablecer</button>
+        <button id="closeImageOverlay" type="button">Cerrar</button>
+      </div>
     </div>
     <script src="presentacion.js"></script>
   </body>

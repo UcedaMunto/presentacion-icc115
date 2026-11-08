@@ -270,24 +270,24 @@ body {
   height: 51px;
   flex: 0 0 51px;
   border-radius: 14px;
-  background: #edf3ff;
+  background: #2457a6;
 }
 
 .icon-bkg.green {
-  background: #eaf9f3;
+  background: #087453;
 }
 
 .icon-bkg.orange {
-  background: #fff1e8;
+  background: #a94c13;
 }
 
 .icon-bkg.purple {
-  background: #f3edff;
+  background: #6840a7;
 }
 
 .mini-icon {
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   object-fit: contain;
 }
 
@@ -471,13 +471,13 @@ body {
   height: 60px;
   display: grid;
   place-items: center;
-  background: #eef4ff;
+  background: #2457a6;
   border-radius: 15px;
 }
 
 .agenda-symbol img {
-  width: 34px;
-  height: 34px;
+  width: 38px;
+  height: 38px;
 }
 
 .agenda-name {
@@ -1232,6 +1232,7 @@ body {
   align-items: center;
   justify-content: center;
   padding: 40px;
+  overflow: hidden;
   cursor: zoom-out;
 }
 
@@ -1246,6 +1247,53 @@ body {
   background: white;
   border-radius: 8px;
   box-shadow: 0 8px 50px #0007;
+  transform: translate(var(--image-x, 0px), var(--image-y, 0px)) scale(var(--image-scale, 1));
+  touch-action: none;
+  user-select: none;
+  cursor: default;
+}
+
+.overlay.zoomed img {
+  cursor: grab;
+}
+
+.overlay.dragging img {
+  cursor: grabbing;
+}
+
+.image-controls {
+  position: absolute;
+  z-index: 1;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  width: max-content;
+  max-width: calc(100vw - 24px);
+  padding: 10px 16px;
+  border-radius: 14px;
+  background: #102b4e;
+  color: white;
+  font-size: 14px;
+  cursor: default;
+}
+
+.image-controls button {
+  border: 1px solid #a9c6ee;
+  border-radius: 8px;
+  background: #2457a6;
+  color: white;
+  padding: 7px 12px;
+  cursor: pointer;
+}
+
+.image-controls button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 3px;
 }
 
 .notes-drawer {
