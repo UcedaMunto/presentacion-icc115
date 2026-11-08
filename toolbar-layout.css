@@ -1,0 +1,150 @@
+.toolbar {
+  height: 58px;
+  flex-wrap: nowrap;
+}
+
+.toolbar .brand,
+.toolbar .actions {
+  flex-shrink: 0;
+}
+
+.toolbar .actions {
+  align-items: center;
+  gap: 6px;
+}
+
+.toolbar .tabs {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.toolbar .toolbtn {
+  white-space: nowrap;
+}
+
+.help-bar {
+  display: none;
+}
+
+.toolbar #slideNumber {
+  min-width: 58px;
+  text-align: center;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.toolbar .brand-mark .ico {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.85;
+}
+
+.toolbar .tab:focus-visible,
+.toolbar .toolbtn:focus-visible {
+  outline: 2px solid #8dd4ec;
+  outline-offset: 2px;
+}
+
+.annex2-slide {
+  background: #f5f8fd;
+}
+
+.annex2-content {
+  position: absolute;
+  inset: 0 auto auto 0;
+  width: 1920px;
+  height: 1080px;
+  transform: scale(0.8333333333);
+  transform-origin: top left;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 91% 13%, #5ca8f51a, transparent 27%),
+    linear-gradient(160deg, #f7faff, #f2f6fc);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.annex2-content :where(.panel) {
+  padding: 0;
+}
+
+.annex2-content .metric {
+  flex-direction: row;
+  justify-content: flex-start;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #e4f0e9;
+  border-radius: 0;
+}
+
+.annex2-content .slide-head {
+  top: 31px;
+}
+
+.annex2-symbols {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+@media (max-width: 1750px) {
+  .toolbar {
+    padding: 0 10px;
+    gap: 8px;
+  }
+
+  .toolbar .brand .sub {
+    display: none;
+  }
+
+  .toolbar .brand {
+    font-size: 12px;
+    gap: 7px;
+  }
+
+  .toolbar .tab,
+  .toolbar .toolbtn {
+    font-size: 11px;
+    padding: 8px;
+  }
+}
+
+@media (max-width: 1100px) {
+  .toolbar {
+    height: auto;
+    min-height: 58px;
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+
+  .toolbar .tabs {
+    order: 3;
+    flex: 1 0 100%;
+    overflow-x: auto;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 600px) {
+  .toolbar .brand {
+    display: none;
+  }
+
+  .toolbar .actions {
+    width: 100%;
+    justify-content: center;
+    gap: 5px;
+  }
+
+  .toolbar .toolbtn {
+    font-size: 10px;
+    padding: 7px 6px;
+  }
+}
+
+@media print {
+  .toolbar {
+    display: none;
+  }
+}

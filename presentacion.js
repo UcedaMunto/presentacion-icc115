@@ -1,6 +1,7 @@
 const deck = Array.from(document.querySelectorAll('.slide'));
 const stage = document.getElementById('stage');
 const current = document.getElementById('slideNumber');
+const slideTabs = Array.from(document.querySelectorAll('.toolbar .tab'));
 let slideIndex = 0;
 const notesBox = document.getElementById('notes');
 const notesText = document.getElementById('notesText');
@@ -46,22 +47,31 @@ function closeImageOverlay() {
 }
 
 function resizeStage() {
+  const toolbarHeight = document.querySelector('.toolbar').getBoundingClientRect().height;
   document.documentElement.style.setProperty(
     '--scale',
-    Math.min(innerWidth / 1600, innerHeight / 900).toFixed(5),
+    Math.min(innerWidth / 1600, (innerHeight - toolbarHeight) / 900).toFixed(5),
   );
+  document.documentElement.style.setProperty('--toolbar-height', `${toolbarHeight}px`);
   resetImageZoom();
 }
 
 function updateNotes() {
-  notesText.textContent =
-    deck[slideIndex].querySelector('.speaker-notes')?.textContent || 'Sin notas.';
+  const notes = deck[slideIndex].querySelector('.speaker-notes');
+  notesText.textContent = notes?.content?.textContent || notes?.textContent || 'Sin notas.';
 }
 
 function showSlide(n) {
   slideIndex = Math.min(deck.length - 1, Math.max(0, n));
   deck.forEach((slide, i) => slide.classList.toggle('active', i === slideIndex));
   current.textContent = `${slideIndex + 1} / ${deck.length}`;
+  slideTabs.forEach((tab) => {
+    const target = Number(tab.dataset.slide);
+    const active = target === 0 ? slideIndex < 24 : slideIndex === target;
+    tab.classList.toggle('active', active);
+    if (active) tab.setAttribute('aria-current', 'page');
+    else tab.removeAttribute('aria-current');
+  });
   location.hash = 'diapositiva-' + (slideIndex + 1);
   updateNotes();
 }
@@ -94,6 +104,7 @@ function zoom(ev) {
   }
 }
 addEventListener('resize', resizeStage);
+document.addEventListener('fullscreenchange', resizeStage);
 resizeStage();
 window.addEventListener('keydown', (e) => {
   if (imageOverlay.classList.contains('open')) {
@@ -105,6 +116,8 @@ window.addEventListener('keydown', (e) => {
     }
     return;
   }
+  if (e.target.closest('input, textarea, [contenteditable]')) return;
+  if (e.target.closest('button') && (e.key === ' ' || e.key === 'Enter')) return;
   if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
     e.preventDefault();
     moveSlide(1);
@@ -121,6 +134,9 @@ window.addEventListener('keydown', (e) => {
     toggleNotes();
   } else if (e.key.toLowerCase() === 'f') {
     toggleFullscreen();
+  } else if (e.key.toLowerCase() === 'p' && !e.ctrlKey && !e.metaKey) {
+    e.preventDefault();
+    window.print();
   } else if (e.key === 'Escape') {
     notesBox.classList.remove('open');
   }
@@ -172,6 +188,9 @@ document.getElementById('btnNext').addEventListener('click', () => moveSlide(1))
 document.getElementById('btnNotes').addEventListener('click', toggleNotes);
 document.getElementById('btnFull').addEventListener('click', toggleFullscreen);
 document.getElementById('btnPrint').addEventListener('click', () => window.print());
+slideTabs.forEach((tab) => {
+  tab.addEventListener('click', () => showSlide(Number(tab.dataset.slide)));
+});
 document
   .getElementById('closeNotes')
   .addEventListener('click', () => notesBox.classList.remove('open'));

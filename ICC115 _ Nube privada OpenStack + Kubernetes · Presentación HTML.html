@@ -1,25 +1,189 @@
 <!doctype html>
+
 <html lang="es">
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
     <title>ICC115 | Nube privada OpenStack + Kubernetes · Presentación HTML</title>
-    <link rel="stylesheet" href="presentacion.css" />
+    <link href="presentacion.css" rel="stylesheet" />
+    <link href="anexar2.css" rel="stylesheet" />
+    <link href="toolbar-layout.css" rel="stylesheet" />
   </head>
   <body>
+    <svg
+      aria-hidden="true"
+      class="annex2-symbols annex2-inline-01"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <symbol id="i-cloud" viewBox="0 0 24 24">
+          <path d="M7 18h10a4.5 4.5 0 0 0 .3-9A6 6 0 0 0 6 10.3 4 4 0 0 0 7 18Z"></path>
+        </symbol>
+        <symbol id="i-server" viewBox="0 0 24 24">
+          <rect height="8" rx="2" width="18" x="3" y="3"></rect>
+          <rect height="8" rx="2" width="18" x="3" y="13"></rect>
+          <path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"></path>
+        </symbol>
+        <symbol id="i-monitor" viewBox="0 0 24 24">
+          <rect height="15" rx="2" width="20" x="2" y="3"></rect>
+          <path d="M8 22h8m-4-4v4m-6-9h12"></path>
+        </symbol>
+        <symbol id="i-user" viewBox="0 0 24 24">
+          <circle cx="12" cy="7" r="4"></circle>
+          <path d="M4 21v-2a8 8 0 0 1 16 0v2"></path>
+        </symbol>
+        <symbol id="i-terminal" viewBox="0 0 24 24">
+          <rect height="18" rx="2" width="20" x="2" y="3"></rect>
+          <path d="m6 9 3 3-3 3m6 0h6"></path>
+        </symbol>
+        <symbol id="i-grid" viewBox="0 0 24 24">
+          <rect height="8" rx="1" width="8" x="3" y="3"></rect>
+          <rect height="8" rx="1" width="8" x="13" y="3"></rect>
+          <rect height="8" rx="1" width="8" x="3" y="13"></rect>
+          <rect height="8" rx="1" width="8" x="13" y="13"></rect>
+        </symbol>
+        <symbol id="i-shield" viewBox="0 0 24 24">
+          <path d="M12 2 4 6v6c0 5 3 8 8 10 5-2 8-5 8-10V6l-8-4Z"></path>
+          <path d="m9 12 2 2 4-4"></path>
+        </symbol>
+        <symbol id="i-net" viewBox="0 0 24 24">
+          <circle cx="12" cy="5" r="3"></circle>
+          <circle cx="5" cy="19" r="3"></circle>
+          <circle cx="19" cy="19" r="3"></circle>
+          <path d="M10.5 7.8 6.4 16M13.5 7.8l4.1 8.2M8 19h8"></path>
+        </symbol>
+        <symbol id="i-layers" viewBox="0 0 24 24">
+          <path d="m12 2 10 5-10 5L2 7l10-5Zm-10 10 10 5 10-5M2 17l10 5 10-5"></path>
+        </symbol>
+        <symbol id="i-cube" viewBox="0 0 24 24">
+          <path d="m12 2 9 5-9 5-9-5 9-5Zm-9 5v10l9 5 9-5V7m-9 5v10"></path>
+        </symbol>
+        <symbol id="i-database" viewBox="0 0 24 24">
+          <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+          <path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"></path>
+        </symbol>
+        <symbol id="i-image" viewBox="0 0 24 24">
+          <rect height="18" rx="2" width="20" x="2" y="3"></rect>
+          <circle cx="8" cy="9" r="2"></circle>
+          <path d="m3 18 6-6 4 4 3-3 6 6"></path>
+        </symbol>
+        <symbol id="i-fire" viewBox="0 0 24 24">
+          <path
+            d="M12 22c-4.7 0-8-3-8-7 0-4 4-7 5-12 3 2 3 6 5 6 1-1 2-3 2-5 4 4 5 7 5 11 0 4-4 7-9 7Z"
+          ></path>
+          <path d="M12 22c-2 0-4-2-4-4s3-5 4-6c.5 3 4 4 4 6s-2 4-4 4Z"></path>
+        </symbol>
+        <symbol id="i-key" viewBox="0 0 24 24">
+          <circle cx="8" cy="8" r="5"></circle>
+          <path d="m12 12 9 9m-4-4 2-2m-5-1 2-2"></path>
+        </symbol>
+        <symbol id="i-cpu" viewBox="0 0 24 24">
+          <rect height="12" rx="2" width="12" x="6" y="6"></rect>
+          <path d="M9 9h6v6H9zM3 9h3m-3 6h3m12-6h3m-3 6h3M9 3v3m6-3v3m-6 12v3m6-3v3"></path>
+        </symbol>
+        <symbol id="i-gpu" viewBox="0 0 24 24">
+          <rect height="14" rx="2" width="19" x="2" y="5"></rect>
+          <circle cx="11" cy="12" r="4"></circle>
+          <path d="M21 9h2m-2 6h2M7 8l8 8m0-8-8 8"></path>
+        </symbol>
+        <symbol id="i-chart" viewBox="0 0 24 24">
+          <path d="M3 3v18h18M7 16l4-5 3 3 6-7"></path>
+          <path d="M16 7h4v4"></path>
+        </symbol>
+        <symbol id="i-globe" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"></path>
+        </symbol>
+        <symbol id="i-puzzle" viewBox="0 0 24 24">
+          <path
+            d="M3 3h7 c-.8 2.5 .5 4 2 4 s2.8-1.5 2-4 h7v7
+               c-2.5-.8-4 .5-4 2 s1.5 2.8 4 2 v7h-7
+               c.8-2.5-.5-4-2-4 s-2.8 1.5-2 4 H3v-7
+               c2.5.8 4-.5 4-2 s-1.5-2.8-4-2 V3Z"
+          ></path>
+        </symbol>
+        <symbol id="i-lock" viewBox="0 0 24 24">
+          <rect height="12" rx="2" width="16" x="4" y="10"></rect>
+          <path d="M7 10V7a5 5 0 0 1 10 0v3m-5 5v3"></path>
+        </symbol>
+        <symbol id="i-k8s" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="8"></circle>
+          <circle cx="12" cy="12" r="2"></circle>
+          <path d="M12 2v8m0 4v8M2 12h8m4 0h8M5 5l5.5 5.5m3 3L19 19M19 5l-5.5 5.5m-3 3L5 19"></path>
+        </symbol>
+        <symbol id="i-disk" viewBox="0 0 24 24">
+          <rect height="14" rx="2" width="20" x="2" y="5"></rect>
+          <circle cx="16" cy="12" r="3"></circle>
+          <path d="M5 15h5"></path>
+        </symbol>
+        <symbol id="i-code" viewBox="0 0 24 24">
+          <path d="m8 5-7 7 7 7M16 5l7 7-7 7M14 3l-4 18"></path>
+        </symbol>
+        <symbol id="i-box" viewBox="0 0 24 24">
+          <rect height="17" rx="3" width="18" x="3" y="4"></rect>
+          <path d="M3 9h18M9 4v5"></path>
+        </symbol>
+        <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"></path></symbol>
+        <symbol id="i-package" viewBox="0 0 24 24">
+          <path d="m12 2 9 5-9 5-9-5 9-5ZM3 7v10l9 5 9-5V7m-9 5v10M7.5 4.5l9 5"></path>
+        </symbol>
+        <symbol id="i-github" viewBox="0 0 24 24">
+          <circle cx="12" cy="12" r="10"></circle>
+          <path
+            d="M8 19v-3 c-3-1-4-5-2-7 0-2 1-3 2-4 2 0 2 1 4 1
+               s2-1 4-1 c1 1 2 2 2 4 2 2 1 6-2 7 v3m-8-5h8"
+          ></path>
+        </symbol>
+      </defs>
+    </svg>
+    <header class="toolbar">
+      <div class="brand">
+        <div class="brand-mark">
+          <svg class="ico annex2-inline-02"><use href="#i-cloud"></use></svg>
+        </div>
+        <div>
+          ICC115 · CLOUD LAB<span class="sub"
+            >Universidad de El Salvador · Presentación completa</span
+          >
+        </div>
+      </div>
+      <nav aria-label="Presentación y diagramas anexos" class="tabs">
+        <button class="tab" data-slide="0" type="button">Presentación</button>
+        <button class="tab active" data-slide="24" type="button">01 · Arquitectura general</button>
+        <button class="tab" data-slide="25" type="button">02 · OpenStack ↔ Kubernetes</button>
+        <button class="tab" data-slide="26" type="button">03 · Red y nodos físicos</button>
+        <button class="tab" data-slide="27" type="button">04 · Aplicaciones y monitoreo</button>
+      </nav>
+      <div class="actions">
+        <button class="toolbtn" id="btnPrevious" title="Flecha izquierda" type="button">◀</button
+        ><output aria-label="Diapositiva actual" id="slideNumber">1 / 28</output
+        ><button class="toolbtn" id="btnNext" title="Flecha derecha" type="button">▶</button
+        ><button class="toolbtn" id="btnNotes" title="Notas del presentador (N)" type="button">
+          Notas</button
+        ><button class="toolbtn" id="btnFull" title="Pantalla completa (F)" type="button">
+          ⛶ Pantalla completa</button
+        ><button
+          class="toolbtn"
+          id="btnPrint"
+          title="Imprimir la presentación completa (P)"
+          type="button"
+        >
+          ⎙ Imprimir
+        </button>
+      </div>
+    </header>
     <div class="help-bar">← → navegar · N notas · F pantalla completa</div>
     <main class="stage" id="stage">
       <section
-        class="slide cover-slide"
-        id="slide-1"
-        data-title="Diseño de una plataforma cloud privada basada en OpenStack y Kubernetes"
         aria-label="Diapositiva 1"
+        class="slide cover-slide"
+        data-title="Diseño de una plataforma cloud privada basada en OpenStack y Kubernetes"
+        id="slide-1"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>INFRAESTRUCTURA CLOUD</div>
           <h1>Diseño de una plataforma cloud privada basada en OpenStack y Kubernetes</h1>
-
-          <div class="folio">01 / 24</div>
+          <div class="folio">01 / 28</div>
         </header>
         <div class="body">
           <div class="cover-left">
@@ -39,10 +203,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
           </div>
           <div class="crest-box">
             <img
-              class="crest zoomable"
-              src="assets/images/figure-01.jpg"
               alt="Escudo Universidad de El Salvador"
+              class="crest zoomable"
               loading="eager"
+              src="assets/images/figure-01.jpg"
             />
           </div>
           <div class="cover-side-caption">
@@ -51,31 +215,30 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>01 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>01 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-2"
-        data-title="Contenido de la presentación"
         aria-label="Diapositiva 2"
+        class="slide"
+        data-title="Contenido de la presentación"
+        id="slide-2"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>ESTRUCTURA DE LA PRESENTACIÓN</div>
           <h1>Contenido de la presentación</h1>
-
-          <div class="folio">02 / 24</div>
+          <div class="folio">02 / 28</div>
         </header>
         <div class="body">
           <div class="agenda-list">
             <article class="agenda-row">
               <span class="agenda-symbol"
                 ><img
-                  class="mini-icon"
-                  src="assets/images/figure-02.png"
                   alt="Figura original de la presentación"
+                  class="mini-icon"
                   loading="eager"
+                  src="assets/images/figure-02.png"
               /></span>
               <div class="agenda-name">1. Problema</div>
               <div class="agenda-description">Recursos dispersos y sin administración común</div>
@@ -83,10 +246,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <article class="agenda-row">
               <span class="agenda-symbol"
                 ><img
-                  class="mini-icon"
-                  src="assets/images/figure-03.png"
                   alt="Figura original de la presentación"
+                  class="mini-icon"
                   loading="eager"
+                  src="assets/images/figure-03.png"
               /></span>
               <div class="agenda-name">2. Objetivos</div>
               <div class="agenda-description">Un objetivo general y cinco específicos</div>
@@ -94,10 +257,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <article class="agenda-row">
               <span class="agenda-symbol"
                 ><img
-                  class="mini-icon"
-                  src="assets/images/figure-04.png"
                   alt="Figura original de la presentación"
+                  class="mini-icon"
                   loading="eager"
+                  src="assets/images/figure-04.png"
               /></span>
               <div class="agenda-name">3. Diseño y desarrollo</div>
               <div class="agenda-description">Arquitectura de cinco capas y su construcción</div>
@@ -105,10 +268,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <article class="agenda-row">
               <span class="agenda-symbol"
                 ><img
-                  class="mini-icon"
-                  src="assets/images/figure-05.png"
                   alt="Figura original de la presentación"
+                  class="mini-icon"
                   loading="eager"
+                  src="assets/images/figure-05.png"
               /></span>
               <div class="agenda-name">4. Demostración</div>
               <div class="agenda-description">Recorrido en vivo de 10 minutos</div>
@@ -116,10 +279,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <article class="agenda-row">
               <span class="agenda-symbol"
                 ><img
-                  class="mini-icon"
-                  src="assets/images/figure-06.png"
                   alt="Figura original de la presentación"
+                  class="mini-icon"
                   loading="eager"
+                  src="assets/images/figure-06.png"
               /></span>
               <div class="agenda-name">5. Evaluación</div>
               <div class="agenda-description">Resultados, objetivos, costos y conclusiones</div>
@@ -128,21 +291,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>02 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>02 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-3"
-        data-title="Problema: recursos repartidos sin una capa común"
         aria-label="Diapositiva 3"
+        class="slide"
+        data-title="Problema: recursos repartidos sin una capa común"
+        id="slide-3"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>01 · PROBLEMA</div>
           <h1>Problema: recursos repartidos sin una capa común</h1>
-
-          <div class="folio">03 / 24</div>
+          <div class="folio">03 / 28</div>
         </header>
         <div class="body">
           <div class="split problem-split">
@@ -182,16 +344,15 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>03 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>03 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
-      <section class="slide" id="slide-4" data-title="Objetivos" aria-label="Diapositiva 4">
+      <section aria-label="Diapositiva 4" class="slide" data-title="Objetivos" id="slide-4">
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>02 · OBJETIVOS</div>
           <h1>Objetivos</h1>
-
-          <div class="folio">04 / 24</div>
+          <div class="folio">04 / 28</div>
         </header>
         <div class="body">
           <div class="objectives-wrap">
@@ -208,10 +369,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="objective-head">
                   <span class="icon-bkg blue"
                     ><img
-                      class="mini-icon"
-                      src="assets/images/figure-02.png"
                       alt="Figura original de la presentación"
-                      loading="eager" /></span
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-02.png" /></span
                   ><strong>OE1</strong>
                 </div>
                 <p>Identificar requerimientos y capacidades de los equipos</p>
@@ -220,10 +381,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="objective-head">
                   <span class="icon-bkg blue"
                     ><img
-                      class="mini-icon"
-                      src="assets/images/figure-04.png"
                       alt="Figura original de la presentación"
-                      loading="eager" /></span
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-04.png" /></span
                   ><strong>OE2</strong>
                 </div>
                 <p>Diseñar la arquitectura de nube privada con WireGuard</p>
@@ -232,10 +393,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="objective-head">
                   <span class="icon-bkg blue"
                     ><img
-                      class="mini-icon"
-                      src="assets/images/figure-07.png"
                       alt="Figura original de la presentación"
-                      loading="eager" /></span
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-07.png" /></span
                   ><strong>OE3</strong>
                 </div>
                 <p>Implementar OpenStack, la conectividad y la asignaciòn de la GPU</p>
@@ -244,10 +405,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="objective-head">
                   <span class="icon-bkg blue"
                     ><img
-                      class="mini-icon"
-                      src="assets/images/figure-08.png"
                       alt="Figura original de la presentación"
-                      loading="eager" /></span
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-08.png" /></span
                   ><strong>OE4</strong>
                 </div>
                 <p>Integrar VTON y el descriptor de prendas como casos de estudio</p>
@@ -256,10 +417,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="objective-head">
                   <span class="icon-bkg blue"
                     ><img
-                      class="mini-icon"
-                      src="assets/images/figure-06.png"
                       alt="Figura original de la presentación"
-                      loading="eager" /></span
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-06.png" /></span
                   ><strong>OE5</strong>
                 </div>
                 <p>Evaluar rendimiento, monitoreo y pruebas de carga</p>
@@ -269,30 +430,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>04 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>04 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-5"
-        data-title="Arquitectura de cinco capas y monitoreo transversal"
         aria-label="Diapositiva 5"
+        class="slide"
+        data-title="Arquitectura de cinco capas y monitoreo transversal"
+        id="slide-5"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>Arquitectura de cinco capas y monitoreo transversal</h1>
-
-          <div class="folio">05 / 24</div>
+          <div class="folio">05 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-09.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-09.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -316,42 +476,41 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>05 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>05 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-6"
-        data-title="Capa física y de red: cinco sitios unidos por WireGuard"
         aria-label="Diapositiva 6"
+        class="slide"
+        data-title="Capa física y de red: cinco sitios unidos por WireGuard"
+        id="slide-6"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>Capa física y de red: cinco sitios unidos por WireGuard</h1>
-
-          <div class="folio">06 / 24</div>
+          <div class="folio">06 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-10.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/aws-network.svg"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
             <div class="info-stack">
               <article class="info-card info-orange">
                 <div class="info-head">
-                  <div class="icon-bkg orange">
+                  <div class="icon-bkg orange aws-icon">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-11.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/icons/aws/ec2.svg"
                     />
                   </div>
                   <strong>Hub en Amazon EC2</strong>
@@ -362,10 +521,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg purple">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-12.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-12.png"
                     />
                   </div>
                   <strong>Latencia de 70 a 140 ms</strong>
@@ -376,10 +535,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg green">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-13.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-13.png"
                     />
                   </div>
                   <strong>Roles por capacidad</strong>
@@ -391,30 +550,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>06 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>06 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-7"
-        data-title="IaaS: OpenStack administra cómputo, red y almacenamiento"
         aria-label="Diapositiva 7"
+        class="slide"
+        data-title="IaaS: OpenStack administra cómputo, red y almacenamiento"
+        id="slide-7"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>IaaS: OpenStack administra cómputo, red y almacenamiento</h1>
-
-          <div class="folio">07 / 24</div>
+          <div class="folio">07 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout diagram-wide">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-14.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-14.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -434,30 +592,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>07 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>07 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-8"
-        data-title="PaaS: Kubernetes con Magnum y la GPU en un pod"
         aria-label="Diapositiva 8"
+        class="slide"
+        data-title="PaaS: Kubernetes con Magnum y la GPU en un pod"
+        id="slide-8"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>PaaS: Kubernetes con Magnum y la GPU en un pod</h1>
-
-          <div class="folio">08 / 24</div>
+          <div class="folio">08 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-15.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-15.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -466,10 +623,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg blue">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-08.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-08.png"
                     />
                   </div>
                   <strong>Clúster k8s-vton</strong>
@@ -480,10 +637,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg orange">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-16.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-16.png"
                     />
                   </div>
                   <strong>GPU por PCI passthrough</strong>
@@ -497,10 +654,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg green">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-13.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-13.png"
                     />
                   </div>
                   <strong>Ubicación controlada</strong>
@@ -512,30 +669,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>08 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>08 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-9"
-        data-title="SaaS: prueba virtual de prendas con una cola de solicitudes"
         aria-label="Diapositiva 9"
+        class="slide"
+        data-title="SaaS: prueba virtual de prendas con una cola de solicitudes"
+        id="slide-9"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>SaaS: prueba virtual de prendas con una cola de solicitudes</h1>
-
-          <div class="folio">09 / 24</div>
+          <div class="folio">09 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-17.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-17.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -544,10 +700,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg blue">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-18.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-18.png"
                     />
                   </div>
                   <strong>Una sola inferencia a la vez</strong>
@@ -558,10 +714,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg orange">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-19.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-19.png"
                     />
                   </div>
                   <strong>Límites por usuario</strong>
@@ -572,10 +728,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg green">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-20.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-20.png"
                     />
                   </div>
                   <strong>Descriptor de prendas</strong>
@@ -587,43 +743,42 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>09 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>09 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-10"
-        data-title="Funcionamiento de una red convolucional"
         aria-label="Diapositiva 10"
+        class="slide"
+        data-title="Funcionamiento de una red convolucional"
+        id="slide-10"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>Funcionamiento de una red convolucional</h1>
-
-          <div class="folio">10 / 24</div>
+          <div class="folio">10 / 28</div>
         </header>
         <div class="body">
           <div class="full-figure">
             <img
-              class="figure-full zoomable"
-              src="assets/images/figure-21.png"
               alt="Infografía original de funcionamiento de una red convolucional"
+              class="figure-full zoomable"
               loading="eager"
+              src="assets/images/figure-21.png"
             />
           </div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>10 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>10 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide annex-slide"
-        id="slide-11"
-        data-title="Dataset etiquetado: de fotografías a SQLite"
         aria-label="Diapositiva 11"
+        class="slide annex-slide"
+        data-title="Dataset etiquetado: de fotografías a SQLite"
+        id="slide-11"
       >
         <header class="header">
           <div class="eyebrow">
@@ -635,7 +790,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             Curación, anotación con IA generativa y estructuración de los datos para
             MobileNetV3-Small
           </p>
-          <div class="folio">11 / 24</div>
+          <div class="folio">11 / 28</div>
         </header>
         <div class="pipeline">
           <article class="step top-blue">
@@ -644,16 +799,16 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <p>Prendas procedentes de tres conjuntos de datos.</p>
             <div class="gallery">
               <div class="garment">
-                <img src="assets/images/figure-22.svg" alt="Ilustración de camiseta" />
+                <img alt="Ilustración de camiseta" src="assets/images/figure-22.svg" />
               </div>
               <div class="garment">
-                <img src="assets/images/figure-23.svg" alt="Ilustración de vestido" />
+                <img alt="Ilustración de vestido" src="assets/images/figure-23.svg" />
               </div>
               <div class="garment">
-                <img src="assets/images/figure-24.svg" alt="Ilustración de pantalón" />
+                <img alt="Ilustración de pantalón" src="assets/images/figure-24.svg" />
               </div>
               <div class="garment">
-                <img src="assets/images/figure-25.svg" alt="Ilustración de sudadera" />
+                <img alt="Ilustración de sudadera" src="assets/images/figure-25.svg" />
               </div>
             </div>
             <div class="source-note">
@@ -668,11 +823,11 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <h2>Depuración</h2>
             <p>Se descartan imágenes duplicadas o visualmente similares.</p>
             <div class="duplicate">
-              <img class="sh one" src="assets/images/figure-22.svg" alt="Camiseta repetida" />
+              <img alt="Camiseta repetida" class="sh one" src="assets/images/figure-22.svg" />
               <img
+                alt="Camiseta repetida descartada"
                 class="sh two"
                 src="assets/images/figure-22.svg"
-                alt="Camiseta repetida descartada"
               />
               <div class="x-badge">×</div>
             </div>
@@ -694,9 +849,9 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="provider second">DeepSeek</div>
             </div>
             <img
-              src="assets/images/figure-26.png"
               alt="Captura real del monitor de anotación con NVIDIA NIM y DeepSeek"
               class="monitor zoomable"
+              src="assets/images/figure-26.png"
             />
             <div class="screenshot-caption">Captura del panel desarrollado para el proyecto.</div>
             <div class="tags">
@@ -751,10 +906,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
       </section>
       <!-- ============================== DIAPOSITIVA 2 ============================== -->
       <section
-        class="slide annex-slide"
-        id="slide-12"
-        data-title="Entrenamiento, publicación y ejecución en nube"
         aria-label="Diapositiva 12"
+        class="slide annex-slide"
+        data-title="Entrenamiento, publicación y ejecución en nube"
+        id="slide-12"
       >
         <header class="header">
           <div class="eyebrow">
@@ -766,7 +921,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             El modelo se entrena fuera de la nube; Kubernetes únicamente ejecuta la inferencia en
             CPU
           </p>
-          <div class="folio">12 / 24</div>
+          <div class="folio">12 / 28</div>
         </header>
         <div class="panels">
           <article class="panel left">
@@ -780,9 +935,9 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="node">
                 <div class="ico">
                   <img
-                    src="assets/images/figure-22.svg"
                     alt="Imagen de prenda"
                     id="training-image"
+                    src="assets/images/figure-22.svg"
                   />
                 </div>
                 Imagen + etiquetas
@@ -791,47 +946,47 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="node net">
                 <div class="ico">
                   <svg
+                    aria-label="Capas convolucionales de MobileNetV3 Small"
+                    height="90"
                     viewBox="0 0 170 92"
                     width="168"
-                    height="90"
-                    aria-label="Capas convolucionales de MobileNetV3 Small"
                   >
                     <defs>
-                      <lineargradient id="annex-lc" x1="0" x2="1">
+                      <linearGradient id="annex-lc" x1="0" x2="1">
                         <stop stop-color="#2d71dc"></stop>
                         <stop offset="1" stop-color="#7d5ce3"></stop>
-                      </lineargradient>
+                      </linearGradient>
                     </defs>
                     <rect
-                      x="8"
-                      y="23"
-                      width="30"
+                      fill="#9fd4fc"
                       height="46"
                       rx="5"
-                      fill="#9fd4fc"
                       stroke="#3a77aa"
+                      width="30"
+                      x="8"
+                      y="23"
                     ></rect>
                     <rect
-                      x="38"
-                      y="17"
-                      width="28"
+                      fill="#65bdf4"
                       height="57"
                       rx="5"
-                      fill="#65bdf4"
                       stroke="#2d6aab"
+                      width="28"
+                      x="38"
+                      y="17"
                     ></rect>
                     <rect
+                      fill="url(#annex-lc)"
+                      height="71"
+                      opacity=".89"
+                      rx="5"
+                      width="30"
                       x="66"
                       y="10"
-                      width="30"
-                      height="71"
-                      rx="5"
-                      fill="url(#annex-lc)"
-                      opacity=".89"
                     ></rect>
-                    <rect x="96" y="20" width="28" height="52" rx="5" fill="#8b75e2"></rect>
-                    <rect x="124" y="31" width="30" height="31" rx="5" fill="#bdabea"></rect>
-                    <g stroke="#fff" opacity=".5" stroke-width="1">
+                    <rect fill="#8b75e2" height="52" rx="5" width="28" x="96" y="20"></rect>
+                    <rect fill="#bdabea" height="31" rx="5" width="30" x="124" y="31"></rect>
+                    <g opacity=".5" stroke="#fff" stroke-width="1">
                       <path
                         d="M12 33h22 M12 42h22 M12 51h22
                            M42 28h20 M42 41h20 M42 54h20
@@ -866,14 +1021,14 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <div class="cloud-route">
               <div class="deploy-box">
                 <div class="round">
-                  <svg viewBox="0 0 32 32" width="33" height="33">
+                  <svg height="33" viewBox="0 0 32 32" width="33">
                     <path
                       d="M8 8v13 m0-13a3 3 0 1 0-2-1 m2 14a3 3 0 1 0-2 2
                          M8 15h14 m0-7v13 m0-13a3 3 0 1 0-2-1 m2 14a3 3 0 1 0-2 2"
-                      stroke="currentColor"
-                      stroke-width="2.7"
                       fill="none"
+                      stroke="currentColor"
                       stroke-linecap="round"
+                      stroke-width="2.7"
                     ></path>
                   </svg>
                 </div>
@@ -882,20 +1037,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="route-arrow">➜</div>
               <div class="deploy-box">
                 <div class="round">
-                  <svg viewBox="0 0 36 36" width="34" height="34">
+                  <svg height="34" viewBox="0 0 36 36" width="34">
                     <ellipse
                       cx="18"
                       cy="9"
+                      fill="none"
                       rx="12"
                       ry="5.5"
-                      fill="none"
                       stroke="currentColor"
                       stroke-width="2.3"
                     ></ellipse>
                     <path
                       d="M6 9v19c0 8 24 8 24 0V9M6 18c0 8 24 8 24 0"
-                      stroke="currentColor"
                       fill="none"
+                      stroke="currentColor"
                       stroke-width="2.3"
                     ></path>
                   </svg>
@@ -906,18 +1061,18 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="route-arrow">➜</div>
               <div class="deploy-box">
                 <div class="round">
-                  <svg viewBox="0 0 36 36" width="34" height="34">
+                  <svg height="34" viewBox="0 0 36 36" width="34">
                     <path
                       d="M18 4 30 11v14L18 32 6 25V11Z"
+                      fill="none"
                       stroke="currentColor"
                       stroke-width="2.5"
-                      fill="none"
                     ></path>
                     <path
                       d="M18 9v18m-8-14 16 10m0-10-16 10"
+                      fill="none"
                       stroke="currentColor"
                       stroke-width="2"
-                      fill="none"
                     ></path>
                   </svg>
                 </div>
@@ -939,8 +1094,8 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         <div class="results">
           <div class="chart-card zoomable" title="Clic para ampliar la comparativa">
             <img
-              src="assets/images/figure-27.png"
               alt="Figura real: métricas de los tres entrenamientos"
+              src="assets/images/figure-27.png"
             />
           </div>
           <div class="metric"><strong>94,03 %</strong><span>Exactitud en tipo</span></div>
@@ -956,25 +1111,24 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
       </section>
       <section
-        class="slide"
-        id="slide-13"
-        data-title="Descriptor de prendas: MobileNetV3-Small en CPU"
         aria-label="Diapositiva 13"
+        class="slide"
+        data-title="Descriptor de prendas: MobileNetV3-Small en CPU"
+        id="slide-13"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>Descriptor de prendas: MobileNetV3-Small en CPU</h1>
-
-          <div class="folio">13 / 24</div>
+          <div class="folio">13 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout mobile-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-28.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-28.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -1005,30 +1159,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>13 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>13 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-14"
-        data-title="Acceso con HTTPS y monitoreo de la plataforma"
         aria-label="Diapositiva 14"
+        class="slide"
+        data-title="Acceso con HTTPS y monitoreo de la plataforma"
+        id="slide-14"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
           <h1>Acceso con HTTPS y monitoreo de la plataforma</h1>
-
-          <div class="folio">14 / 24</div>
+          <div class="folio">14 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-29.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-29.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -1037,10 +1190,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg green">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-19.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-19.png"
                     />
                   </div>
                   <strong>HTTPS público</strong>
@@ -1054,10 +1207,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg blue">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-30.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-30.png"
                     />
                   </div>
                   <strong>Nombres internos</strong>
@@ -1068,10 +1221,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg purple">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-06.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-06.png"
                     />
                   </div>
                   <strong>Monitoreo</strong>
@@ -1083,21 +1236,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>14 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>14 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-15"
-        data-title="4 · DEMOSTRACIÓN"
         aria-label="Diapositiva 15"
+        class="slide"
+        data-title="4 · DEMOSTRACIÓN"
+        id="slide-15"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>04 · DEMOSTRACIÓN</div>
           <h1>4 · DEMOSTRACIÓN</h1>
-
-          <div class="folio">15 / 24</div>
+          <div class="folio">15 / 28</div>
         </header>
         <div class="body">
           <div class="demo-wrap">
@@ -1156,21 +1308,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>15 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>15 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-16"
-        data-title="Resultados: FASHN VTON en la GPU de la nube"
         aria-label="Diapositiva 16"
+        class="slide"
+        data-title="Resultados: FASHN VTON en la GPU de la nube"
+        id="slide-16"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>05 · EVALUACIÓN</div>
           <h1>Resultados: FASHN VTON en la GPU de la nube</h1>
-
-          <div class="folio">16 / 24</div>
+          <div class="folio">16 / 28</div>
         </header>
         <div class="body">
           <div class="results-wrap">
@@ -1204,234 +1355,233 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>16 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>16 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-17"
-        data-title="Resultados: descriptor medido con JMeter"
         aria-label="Diapositiva 17"
+        class="slide"
+        data-title="Resultados: descriptor medido con JMeter"
+        id="slide-17"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>05 · EVALUACIÓN</div>
           <h1>Resultados: descriptor medido con JMeter</h1>
-
-          <div class="folio">17 / 24</div>
+          <div class="folio">17 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout chart-layout">
             <div class="panel figure-panel">
               <svg
-                role="img"
                 aria-label="Cómputo del modelo por nivel de concurrencia (usuarios)"
                 class="svg-chart"
+                role="img"
                 viewBox="0 0 920 480"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
-                  <lineargradient id="barGrad15" x1="0" y1="1" x2="0" y2="0">
+                  <linearGradient id="barGrad15" x1="0" x2="0" y1="1" y2="0">
                     <stop stop-color="#1d5793"></stop>
                     <stop offset="1" stop-color="#59a6e8"></stop>
-                  </lineargradient>
+                  </linearGradient>
                 </defs>
                 <text
-                  x="460.0"
-                  y="28"
-                  text-anchor="middle"
                   fill="#17324f"
                   font-size="23"
                   font-weight="800"
+                  text-anchor="middle"
+                  x="460.0"
+                  y="28"
                 >
                   Cómputo del modelo por nivel de concurrencia (usuarios)
                 </text>
                 <line
+                  stroke="#dce6f1"
+                  stroke-width="1"
                   x1="85"
+                  x2="892"
                   y1="385.00"
-                  x2="892"
                   y2="385.00"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="391.00">0.0</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="391.00" text-anchor="end" fill="#698099" font-size="16">0.0</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="307.75"
-                  x2="892"
                   y2="307.75"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="313.75">12.5</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="313.75" text-anchor="end" fill="#698099" font-size="16">12.5</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="230.50"
-                  x2="892"
                   y2="230.50"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="236.50">25.0</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="236.50" text-anchor="end" fill="#698099" font-size="16">25.0</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="153.25"
-                  x2="892"
                   y2="153.25"
-                  stroke="#dce6f1"
-                  stroke-width="1"
                 ></line>
-                <text x="69" y="159.25" text-anchor="end" fill="#698099" font-size="16">37.5</text>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="159.25">37.5</text>
                 <line
-                  x1="85"
-                  y1="76.00"
-                  x2="892"
-                  y2="76.00"
                   stroke="#dce6f1"
                   stroke-width="1"
+                  x1="85"
+                  x2="892"
+                  y1="76.00"
+                  y2="76.00"
                 ></line>
-                <text x="69" y="82.00" text-anchor="end" fill="#698099" font-size="16">50.0</text>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="82.00">50.0</text>
                 <rect
-                  x="123.70"
-                  y="104.43"
-                  width="84.00"
+                  fill="url(#barGrad15)"
                   height="280.57"
                   rx="8"
-                  fill="url(#barGrad15)"
+                  width="84.00"
+                  x="123.70"
+                  y="104.43"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="165.70"
                   y="92.43"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   45.4
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="165.70"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   1
                 </text>
                 <rect
-                  x="285.10"
-                  y="106.28"
-                  width="84.00"
+                  fill="url(#barGrad15)"
                   height="278.72"
                   rx="8"
-                  fill="url(#barGrad15)"
+                  width="84.00"
+                  x="285.10"
+                  y="106.28"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="327.10"
                   y="94.28"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   45.1
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="327.10"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   2
                 </text>
                 <rect
-                  x="446.50"
-                  y="124.20"
-                  width="84.00"
+                  fill="url(#barGrad15)"
                   height="260.80"
                   rx="8"
-                  fill="url(#barGrad15)"
+                  width="84.00"
+                  x="446.50"
+                  y="124.20"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="488.50"
                   y="112.20"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   42.2
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="488.50"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   4
                 </text>
                 <rect
-                  x="607.90"
-                  y="109.99"
-                  width="84.00"
+                  fill="url(#barGrad15)"
                   height="275.01"
                   rx="8"
-                  fill="url(#barGrad15)"
+                  width="84.00"
+                  x="607.90"
+                  y="109.99"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="649.90"
                   y="97.99"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   44.5
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="649.90"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   8
                 </text>
                 <rect
-                  x="769.30"
-                  y="126.68"
-                  width="84.00"
+                  fill="url(#barGrad15)"
                   height="258.32"
                   rx="8"
-                  fill="url(#barGrad15)"
+                  width="84.00"
+                  x="769.30"
+                  y="126.68"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="811.30"
                   y="114.68"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   41.8
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="811.30"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   16
                 </text>
-                <text x="460.0" y="465" text-anchor="middle" font-size="15" fill="#62758d">
+                <text fill="#62758d" font-size="15" text-anchor="middle" x="460.0" y="465">
                   Cómputo en el servidor (ms)
                 </text>
               </svg>
@@ -1462,178 +1612,177 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>17 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>17 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-18"
-        data-title="Factibilidad y costos evitados"
         aria-label="Diapositiva 18"
+        class="slide"
+        data-title="Factibilidad y costos evitados"
+        id="slide-18"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>05 · EVALUACIÓN</div>
           <h1>Factibilidad y costos evitados</h1>
-
-          <div class="folio">18 / 24</div>
+          <div class="folio">18 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout chart-layout">
             <div class="panel figure-panel">
               <svg
-                role="img"
                 aria-label="Alquiler de una instancia con GPU en nube pública (USD por mes)"
                 class="svg-chart"
+                role="img"
                 viewBox="0 0 920 480"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <defs>
-                  <lineargradient id="barGrad16" x1="0" y1="1" x2="0" y2="0">
+                  <linearGradient id="barGrad16" x1="0" x2="0" y1="1" y2="0">
                     <stop stop-color="#1d5793"></stop>
                     <stop offset="1" stop-color="#59a6e8"></stop>
-                  </lineargradient>
+                  </linearGradient>
                 </defs>
                 <text
-                  x="460.0"
-                  y="28"
-                  text-anchor="middle"
                   fill="#17324f"
                   font-size="23"
                   font-weight="800"
+                  text-anchor="middle"
+                  x="460.0"
+                  y="28"
                 >
                   Alquiler de una instancia con GPU en nube pública (USD por mes)
                 </text>
                 <line
+                  stroke="#dce6f1"
+                  stroke-width="1"
                   x1="85"
+                  x2="892"
                   y1="385.00"
-                  x2="892"
                   y2="385.00"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="391.00">0</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="391.00" text-anchor="end" fill="#698099" font-size="16">0</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="307.75"
-                  x2="892"
                   y2="307.75"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="313.75">625</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="313.75" text-anchor="end" fill="#698099" font-size="16">625</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="230.50"
-                  x2="892"
                   y2="230.50"
+                ></line>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="236.50">1250</text>
+                <line
                   stroke="#dce6f1"
                   stroke-width="1"
-                ></line>
-                <text x="69" y="236.50" text-anchor="end" fill="#698099" font-size="16">1250</text>
-                <line
                   x1="85"
+                  x2="892"
                   y1="153.25"
-                  x2="892"
                   y2="153.25"
-                  stroke="#dce6f1"
-                  stroke-width="1"
                 ></line>
-                <text x="69" y="159.25" text-anchor="end" fill="#698099" font-size="16">1875</text>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="159.25">1875</text>
                 <line
-                  x1="85"
-                  y1="76.00"
-                  x2="892"
-                  y2="76.00"
                   stroke="#dce6f1"
                   stroke-width="1"
+                  x1="85"
+                  x2="892"
+                  y1="76.00"
+                  y2="76.00"
                 ></line>
-                <text x="69" y="82.00" text-anchor="end" fill="#698099" font-size="16">2500</text>
+                <text fill="#698099" font-size="16" text-anchor="end" x="69" y="82.00">2500</text>
                 <rect
-                  x="177.50"
-                  y="321.47"
-                  width="84.00"
+                  fill="url(#barGrad16)"
                   height="63.53"
                   rx="8"
-                  fill="url(#barGrad16)"
+                  width="84.00"
+                  x="177.50"
+                  y="321.47"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="219.50"
                   y="309.47"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   514
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="219.50"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   Google Cloud L4
                 </text>
                 <rect
-                  x="446.50"
-                  y="294.28"
-                  width="84.00"
+                  fill="url(#barGrad16)"
                   height="90.72"
                   rx="8"
-                  fill="url(#barGrad16)"
+                  width="84.00"
+                  x="446.50"
+                  y="294.28"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="488.50"
                   y="282.28"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   734
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="488.50"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   AWS A10G
                 </text>
                 <rect
-                  x="715.50"
-                  y="96.27"
-                  width="84.00"
+                  fill="url(#barGrad16)"
                   height="288.73"
                   rx="8"
-                  fill="url(#barGrad16)"
+                  width="84.00"
+                  x="715.50"
+                  y="96.27"
                 ></rect>
                 <text
+                  fill="#224c78"
+                  font-size="21"
+                  font-weight="800"
+                  text-anchor="middle"
                   x="757.50"
                   y="84.27"
-                  text-anchor="middle"
-                  font-weight="800"
-                  font-size="21"
-                  fill="#224c78"
                 >
                   2336
                 </text>
                 <text
+                  fill="#4e6580"
+                  font-size="17"
+                  font-weight="700"
+                  text-anchor="middle"
                   x="757.50"
                   y="419"
-                  text-anchor="middle"
-                  font-weight="700"
-                  font-size="17"
-                  fill="#4e6580"
                 >
                   Azure A10
                 </text>
-                <text x="460.0" y="465" text-anchor="middle" font-size="15" fill="#62758d">
+                <text fill="#62758d" font-size="15" text-anchor="middle" x="460.0" y="465">
                   USD por mes (730 h)
                 </text>
               </svg>
@@ -1647,10 +1796,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg green">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-31.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-31.png"
                     />
                   </div>
                   <strong>Sin licencias</strong>
@@ -1661,10 +1810,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg orange">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-11.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-11.png"
                     />
                   </div>
                   <strong>Gasto externo recurrente</strong>
@@ -1675,10 +1824,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="info-head">
                   <div class="icon-bkg blue">
                     <img
-                      class="mini-icon"
-                      src="assets/images/figure-32.png"
                       alt="Icono del PowerPoint"
+                      class="mini-icon"
                       loading="eager"
+                      src="assets/images/figure-32.png"
                     />
                   </div>
                   <strong>Alcance</strong>
@@ -1690,21 +1839,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>18 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>18 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-19"
-        data-title="Limitaciones observadas y trabajo futuro"
         aria-label="Diapositiva 19"
+        class="slide"
+        data-title="Limitaciones observadas y trabajo futuro"
+        id="slide-19"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>05 · EVALUACIÓN</div>
           <h1>Limitaciones observadas y trabajo futuro</h1>
-
-          <div class="folio">19 / 24</div>
+          <div class="folio">19 / 28</div>
         </header>
         <div class="body">
           <div class="limitations-grid">
@@ -1712,10 +1860,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg orange"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-32.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-32.png"
                 /></span>
                 <h2>Condiciones observadas</h2>
               </div>
@@ -1730,10 +1878,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg green"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-33.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-33.png"
                 /></span>
                 <h2>Mejora posible</h2>
               </div>
@@ -1749,16 +1897,15 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>19 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>19 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
-      <section class="slide" id="slide-20" data-title="Conclusiones" aria-label="Diapositiva 20">
+      <section aria-label="Diapositiva 20" class="slide" data-title="Conclusiones" id="slide-20">
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>CONCLUSIONES</div>
           <h1>Conclusiones</h1>
-
-          <div class="folio">20 / 24</div>
+          <div class="folio">20 / 28</div>
         </header>
         <div class="body">
           <div class="conclusions-grid">
@@ -1766,10 +1913,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg blue"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-31.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-31.png"
                 /></span>
                 <h2>Es viable</h2>
               </div>
@@ -1782,10 +1929,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg green"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-34.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-34.png"
                 /></span>
                 <h2>Soporta IA generativa</h2>
               </div>
@@ -1798,10 +1945,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg orange"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-35.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-35.png"
                 /></span>
                 <h2>Con condiciones</h2>
               </div>
@@ -1814,10 +1961,10 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="column-title">
                 <span class="icon-bkg purple"
                   ><img
-                    class="mini-icon"
-                    src="assets/images/figure-08.png"
                     alt="Figura original de la presentación"
+                    class="mini-icon"
                     loading="eager"
+                    src="assets/images/figure-08.png"
                 /></span>
                 <h2>Aporte reproducible</h2>
               </div>
@@ -1829,21 +1976,20 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>20 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>20 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide thanks-slide"
-        id="slide-21"
-        data-title="Gracias"
         aria-label="Diapositiva 21"
+        class="slide thanks-slide"
+        data-title="Gracias"
+        id="slide-21"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>CIERRE</div>
           <h1>Gracias</h1>
-
-          <div class="folio">21 / 24</div>
+          <div class="folio">21 / 28</div>
         </header>
         <div class="body">
           <div class="thanks-main">
@@ -1859,30 +2005,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>21 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>21 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-22"
-        data-title="Respaldo: red virtual de la nube"
         aria-label="Diapositiva 22"
+        class="slide"
+        data-title="Respaldo: red virtual de la nube"
+        id="slide-22"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>DIAPOSITIVA DE RESPALDO</div>
           <h1>Respaldo: red virtual de la nube</h1>
-
-          <div class="folio">22 / 24</div>
+          <div class="folio">22 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout backup-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-36.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-36.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -1897,30 +2042,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>22 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>22 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide"
-        id="slide-23"
-        data-title="Respaldo: arquitectura de monitoreo"
         aria-label="Diapositiva 23"
+        class="slide"
+        data-title="Respaldo: arquitectura de monitoreo"
+        id="slide-23"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>DIAPOSITIVA DE RESPALDO</div>
           <h1>Respaldo: arquitectura de monitoreo</h1>
-
-          <div class="folio">23 / 24</div>
+          <div class="folio">23 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout backup-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-37.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-37.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -1935,30 +2079,29 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>23 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>23 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
       <section
-        class="slide active"
-        id="slide-24"
-        data-title="Respaldo: ruta de la GPU"
         aria-label="Diapositiva 24"
+        class="slide active"
+        data-title="Respaldo: ruta de la GPU"
+        id="slide-24"
       >
         <header class="header">
           <div class="eyebrow"><span class="spot"></span>DIAPOSITIVA DE RESPALDO</div>
           <h1>Respaldo: ruta de la GPU</h1>
-
-          <div class="folio">24 / 24</div>
+          <div class="folio">24 / 28</div>
         </header>
         <div class="body">
           <div class="diagram-layout backup-layout">
             <div class="panel figure-panel">
               <img
-                class="diagram zoomable"
-                src="assets/images/figure-38.png"
                 alt="Figura original de la presentación"
+                class="diagram zoomable"
                 loading="eager"
+                src="assets/images/figure-38.png"
               />
               <div class="figure-caption">Haz clic en la figura para ampliarla</div>
             </div>
@@ -1973,36 +2116,862 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </div>
         <footer class="bottom">
           <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>24 / 24</small>
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>24 / 28</small>
         </footer>
         <template class="speaker-notes"></template>
       </section>
+
+      <section
+        aria-label="Diapositiva 25"
+        class="slide annex2-slide"
+        data-title="Arquitectura general · OpenStack + Kubernetes"
+        id="slide-25"
+      >
+        <section aria-label="Arquitectura general" class="annex2-content">
+          <div class="slide-head">
+            <div>
+              <h1>Arquitectura general · OpenStack + Kubernetes</h1>
+              <p>Nube privada distribuida · Desde los equipos físicos hasta los servicios de IA</p>
+            </div>
+            <div class="head-right">
+              <div class="head-pill">5 servidores físicos</div>
+              <div class="head-pill">4 nodegroups · 5 VM</div>
+            </div>
+          </div>
+          <div class="overview-grid">
+            <div class="panel blue access annex2-inline-03">
+              <div class="cap">
+                <svg class="ico"><use href="#i-user"></use></svg> Acceso de usuarios
+              </div>
+              <div class="person">
+                <svg class="ico"><use href="#i-monitor"></use></svg>
+                <div><strong>VTON Studio</strong><span>Navegador · HTTPS público</span></div>
+              </div>
+            </div>
+            <div class="panel blue overview-app">
+              <div class="layer-heading">
+                <div class="cap blue-c">
+                  <svg class="ico"><use href="#i-layers"></use></svg> SaaS · Aplicaciones del caso
+                  de estudio
+                </div>
+                <span class="chip blue">Desplegadas sobre Kubernetes</span>
+              </div>
+              <div class="application-row">
+                <div class="app-tile">
+                  <svg class="ico"><use href="#i-monitor"></use></svg>
+                  <div>
+                    <strong>VTON Studio</strong><small>Django · web · worker · PostgreSQL</small>
+                  </div>
+                </div>
+                <div class="arrow-h">→</div>
+                <div class="app-tile">
+                  <svg class="ico annex2-inline-04"><use href="#i-gpu"></use></svg>
+                  <div><strong>vton-api</strong><small>FASHN VTON v1.5 · GPU</small></div>
+                </div>
+                <div class="arrow-h">+</div>
+                <div class="app-tile">
+                  <svg class="ico annex2-inline-05"><use href="#i-cpu"></use></svg>
+                  <div>
+                    <strong>garment-describer</strong><small>MobileNetV3-Small · CPU</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel blue overview-paas">
+              <div class="layer-heading">
+                <div class="cap blue-c">
+                  <svg class="ico"><use href="#i-k8s"></use></svg> PaaS · Kubernetes
+                  <strong class="annex2-inline-06">k8s-vton</strong>
+                </div>
+                <span class="chip blue">Magnum · 4 nodegroups / 5 VM · Fedora CoreOS 38</span>
+              </div>
+              <div class="vm-list">
+                <div class="vm purple-v">
+                  <div class="vm-head">
+                    <svg class="ico"><use href="#i-server"></use></svg><strong>Master</strong>
+                  </div>
+                  <div class="host">osa-node1</div>
+                  <div class="desc">Plano de control</div>
+                </div>
+                <div class="vm">
+                  <div class="vm-head">
+                    <svg class="ico"><use href="#i-server"></use></svg><strong>Worker</strong>
+                  </div>
+                  <div class="host">osa-node1</div>
+                  <div class="desc">Carga general</div>
+                </div>
+                <div class="vm green-v">
+                  <div class="vm-head">
+                    <svg class="ico"><use href="#i-monitor"></use></svg><strong>Web</strong>
+                  </div>
+                  <div class="host">osa-node4</div>
+                  <div class="desc">VTON Studio</div>
+                </div>
+                <div class="vm orange-v">
+                  <div class="vm-head">
+                    <svg class="ico"><use href="#i-gpu"></use></svg><strong>GPU</strong>
+                  </div>
+                  <div class="host">osa-node5</div>
+                  <div class="desc">RTX 3060 / vton-api</div>
+                </div>
+                <div class="vm red-v">
+                  <div class="vm-head">
+                    <svg class="ico"><use href="#i-cpu"></use></svg><strong>AI</strong>
+                  </div>
+                  <div class="host">osa-node4</div>
+                  <div class="desc">Descriptor en CPU</div>
+                </div>
+              </div>
+            </div>
+            <div class="panel red overview-iaas">
+              <div class="layer-heading">
+                <div class="cap red-c">
+                  <svg class="ico"><use href="#i-cloud"></use></svg> IaaS · OpenStack-Ansible 33.0.1
+                </div>
+                <span class="chip red">Servicios LXC · Controlador osa-node2</span>
+              </div>
+              <div class="openstack-services">
+                <div class="service">
+                  <svg class="ico"><use href="#i-key"></use></svg><strong>Keystone</strong
+                  ><span>Identidad</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-cube"></use></svg><strong>Nova</strong
+                  ><span>Cómputo</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-chart"></use></svg><strong>Placement</strong
+                  ><span>Inventario</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-net"></use></svg><strong>Neutron</strong
+                  ><span>OVS · Red</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-image"></use></svg><strong>Glance</strong
+                  ><span>Imágenes</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-database"></use></svg><strong>Cinder</strong
+                  ><span>LVM / iSCSI</span>
+                </div>
+                <div class="service">
+                  <svg class="ico"><use href="#i-fire"></use></svg><strong>Heat</strong
+                  ><span>Orquestación</span>
+                </div>
+                <div class="service annex2-inline-07">
+                  <svg class="ico annex2-inline-08"><use href="#i-k8s"></use></svg
+                  ><strong>Magnum</strong><span>Clústeres K8s</span>
+                </div>
+              </div>
+              <div class="basebar">
+                <span>Horizon / APIs</span><span>◆</span><span>HAProxy</span><span>◆</span
+                ><span>Galera</span><span>◆</span><span>RabbitMQ</span><span>◆</span
+                ><span>memcached</span>
+              </div>
+            </div>
+            <div class="panel blue overview-network">
+              <div class="net-row">
+                <div class="cap blue-c">
+                  <svg class="ico"><use href="#i-shield"></use></svg> Red distribuida · WireGuard
+                  VPN
+                </div>
+                <span class="chip">Hub-and-spoke cifrado · 10.10.0.0/24</span>
+              </div>
+              <div class="nets">
+                <span class="chip blue">br-mgmt · Gestión</span
+                ><span class="chip purple">private-net · VXLAN</span
+                ><span class="chip orange">ext-net · NAT</span
+                ><span class="chip">br-storage · iSCSI</span>
+              </div>
+            </div>
+            <div class="panel blue overview-label">
+              <svg class="ico"><use href="#i-terminal"></use></svg>
+              <div>
+                <strong>Acceso administrativo</strong
+                ><span>Horizon · CLI · kubectl · DNS interno</span>
+              </div>
+            </div>
+            <div class="panel green overview-monitor">
+              <div class="cap green-c">
+                <svg class="ico"><use href="#i-chart"></use></svg> Monitoreo transversal
+              </div>
+              <div class="mini annex2-inline-09">
+                Fuera de OpenStack y Kubernetes · <strong>osa-node3</strong>
+              </div>
+              <div class="monitor-brands">
+                <div class="monitor-brand">
+                  <svg class="ico prom"><use href="#i-fire"></use></svg>Prometheus
+                </div>
+                <div class="monitor-brand">
+                  <svg class="ico graf"><use href="#i-chart"></use></svg>Grafana
+                </div>
+              </div>
+              <div class="metric-list">
+                <div class="metric">
+                  <svg class="ico"><use href="#i-server"></use></svg>
+                  <div>node_exporter<small>Cómputo, memoria, disco y redes</small></div>
+                </div>
+                <div class="metric">
+                  <svg class="ico"><use href="#i-cloud"></use></svg>
+                  <div>openstack-exporter<small>Recursos de la nube / Placement</small></div>
+                </div>
+                <div class="metric">
+                  <svg class="ico"><use href="#i-k8s"></use></svg>
+                  <div>kube-state-metrics<small>Estado del clúster y pods</small></div>
+                </div>
+                <div class="metric">
+                  <svg class="ico"><use href="#i-gpu"></use></svg>
+                  <div>dcgm-exporter<small>GPU · VRAM · temperatura</small></div>
+                </div>
+              </div>
+              <div class="monitor-note">
+                Recolecta métricas de <strong>5 hosts + 5 VM + OpenStack + K8s + GPU</strong>.
+              </div>
+            </div>
+            <div class="panel orange overview-hub">
+              <div aria-label="Amazon AWS" class="aws-mark">
+                <b>aws</b
+                ><svg viewBox="0 0 105 25">
+                  <path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"></path>
+                </svg>
+              </div>
+              <div><strong>Amazon EC2</strong><span>Hub WireGuard + DNS + Caddy HTTPS</span></div>
+            </div>
+            <div class="panel purple overview-physical">
+              <div class="layer-heading annex2-inline-10">
+                <div class="cap purple-c">
+                  <svg class="ico"><use href="#i-server"></use></svg> Capa física · Bare metal
+                  distribuido
+                </div>
+                <span class="chip">5 equipos en sitios diferentes · 3 hipervisores Nova</span>
+              </div>
+              <div class="physical-row">
+                <div class="physical-card">
+                  <svg class="ico"><use href="#i-server"></use></svg>
+                  <div><strong>osa-node1</strong><span>compute1 · master + worker</span></div>
+                </div>
+                <div class="physical-card">
+                  <svg class="ico annex2-inline-11"><use href="#i-server"></use></svg>
+                  <div><strong>osa-node2</strong><span>Controlador / deploy-node / NAT</span></div>
+                </div>
+                <div class="physical-card">
+                  <svg class="ico annex2-inline-12"><use href="#i-database"></use></svg>
+                  <div><strong>osa-node3</strong><span>storage1 · Cinder · monitoreo</span></div>
+                </div>
+                <div class="physical-card">
+                  <svg class="ico"><use href="#i-server"></use></svg>
+                  <div><strong>osa-node4</strong><span>compute2 · web + descriptor</span></div>
+                </div>
+                <div class="physical-card">
+                  <svg class="ico annex2-inline-13"><use href="#i-gpu"></use></svg>
+                  <div><strong>osa-node5</strong><span>compute-gpu · RTX 3060 12 GB</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <span
+              >ICC115 · Infraestructura Cloud ·
+              <strong>Arquitectura de cinco capas y monitoreo transversal</strong></span
+            ><span class="page">25 / 28</span>
+          </div>
+        </section>
+        <template class="speaker-notes"
+          >Escenario ampliado de la presentación: 4 nodegroups, 5 VM, descriptor CPU y Caddy/HTTPS.
+          El informe adjunto documenta la etapa anterior: 3 nodegroups, 4 VM, sin TLS; los nodos del
+          clúster usan disco local y cinder_csi está deshabilitado. Se conservan los roles de los
+          cinco hosts, las redes, Magnum/Heat y la GPU del informe. El volumen de pesos del
+          descriptor se adjunta a la VM AI por iSCSI y se expone al pod mediante hostPath; no se
+          presenta como un montaje CSI directo del pod.</template
+        >
+      </section>
+      <section
+        aria-label="Diapositiva 26"
+        class="slide annex2-slide"
+        data-title="Interacción OpenStack ↔ Kubernetes"
+        id="slide-26"
+      >
+        <section aria-label="Interacción OpenStack Kubernetes" class="annex2-content">
+          <div class="slide-head">
+            <div>
+              <h1>Interacción OpenStack ↔ Kubernetes</h1>
+              <p>
+                Magnum transforma infraestructura virtual en una plataforma de contenedores
+                operativa
+              </p>
+            </div>
+            <div class="head-right"><div class="head-pill">IaaS → Magnum / Heat → PaaS</div></div>
+          </div>
+          <div class="interaction-cols">
+            <div class="panel red">
+              <div class="bigpanel-title annex2-inline-14">
+                <svg class="ico"><use href="#i-cloud"></use></svg> OpenStack · IaaS
+              </div>
+              <div class="bigpanel-sub">OpenStack-Ansible 33.0.1 · servicios LXC</div>
+              <div class="iaas-services">
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-key"></use></svg>
+                  <div><strong>Keystone</strong><span>Identidad · autenticación</span></div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-cube"></use></svg>
+                  <div>
+                    <strong>Nova + Placement</strong><span>VM · inventario · aggregates</span>
+                  </div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-net"></use></svg>
+                  <div><strong>Neutron · OVS</strong><span>Redes y conectividad</span></div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-image"></use></svg>
+                  <div><strong>Glance</strong><span>Imagen Fedora CoreOS 38</span></div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-database"></use></svg>
+                  <div><strong>Cinder</strong><span>Volumen de pesos AI</span></div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-fire"></use></svg>
+                  <div><strong>Heat</strong><span>Pilas de orquestación</span></div>
+                </div>
+                <div class="tech-card magnum-bridge">
+                  <svg class="ico"><use href="#i-k8s"></use></svg>
+                  <div><strong>Magnum</strong><span>API de clústeres Kubernetes</span></div>
+                </div>
+                <div class="tech-card">
+                  <svg class="ico"><use href="#i-monitor"></use></svg>
+                  <div><strong>Horizon / API</strong><span>Administración y servicios</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel purple">
+              <div class="flow-header">
+                <strong>Secuencia de aprovisionamiento</strong
+                ><svg class="ico"><use href="#i-layers"></use></svg>
+              </div>
+              <div class="flowsteps">
+                <div class="flowstep">
+                  <span class="stepnum">1</span><svg class="ico"><use href="#i-user"></use></svg
+                  ><strong
+                    >Administrador solicita un clúster con plantilla <em>k8s-fcos38-v4</em></strong
+                  >
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">2</span><svg class="ico"><use href="#i-k8s"></use></svg
+                  ><strong>Magnum recibe la solicitud y gestiona el clúster</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">3</span><svg class="ico"><use href="#i-fire"></use></svg
+                  ><strong>Magnum invoca Heat para orquestar recursos</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">4</span><svg class="ico"><use href="#i-cube"></use></svg
+                  ><strong>Heat solicita a Nova las máquinas virtuales</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">5</span><svg class="ico"><use href="#i-layers"></use></svg
+                  ><strong>Placement + host aggregates ubican cada VM</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">6</span><svg class="ico"><use href="#i-image"></use></svg
+                  ><strong>Glance suministra la imagen Fedora CoreOS 38</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">7</span><svg class="ico"><use href="#i-net"></use></svg
+                  ><strong>Neutron conecta <em>private-net</em> y <em>ext-net</em></strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">8</span><svg class="ico"><use href="#i-gpu"></use></svg
+                  ><strong>Nova entrega la GPU a la VM con PCI passthrough</strong>
+                </div>
+                <div class="flowstep">
+                  <span class="stepnum">9</span><svg class="ico"><use href="#i-k8s"></use></svg
+                  ><strong>Kubernetes inicia nodos y programa los pods</strong>
+                </div>
+              </div>
+            </div>
+            <div class="panel blue">
+              <div class="bigpanel-title annex2-inline-15">
+                <svg class="ico"><use href="#i-k8s"></use></svg> Kubernetes · PaaS
+              </div>
+              <div class="bigpanel-sub">k8s-vton · 4 nodegroups · 5 VM · containerd + Calico</div>
+              <div class="k8s-nodes">
+                <div class="k8s-node">
+                  <div class="top">
+                    <svg class="ico"><use href="#i-server"></use></svg><strong>Master</strong>
+                  </div>
+                  <small>default · osa-node1</small>
+                  <div class="tag">API · scheduler · etcd</div>
+                </div>
+                <div class="k8s-node">
+                  <div class="top">
+                    <svg class="ico"><use href="#i-server"></use></svg><strong>Worker</strong>
+                  </div>
+                  <small>default · osa-node1</small>
+                  <div class="tag">Pods generales · métricas</div>
+                </div>
+                <div class="k8s-node">
+                  <div class="top">
+                    <svg class="ico annex2-inline-16"><use href="#i-monitor"></use></svg
+                    ><strong>Web</strong>
+                  </div>
+                  <small>web · osa-node4</small>
+                  <div class="tag">VTON Studio / PostgreSQL</div>
+                </div>
+                <div class="k8s-node">
+                  <div class="top">
+                    <svg class="ico annex2-inline-17"><use href="#i-gpu"></use></svg
+                    ><strong>GPU</strong>
+                  </div>
+                  <small>gpu · osa-node5</small>
+                  <div class="tag">vton-api · FASHN VTON</div>
+                </div>
+                <div class="k8s-node last">
+                  <div class="top">
+                    <svg class="ico annex2-inline-18"><use href="#i-cpu"></use></svg>
+                  </div>
+                  <div>
+                    <strong>AI · Descriptor</strong
+                    ><small>ai · osa-node4 · MobileNetV3-Small en CPU</small>
+                    <div class="tag">garment-describer · ClusterIP · Cinder</div>
+                  </div>
+                </div>
+              </div>
+              <div class="bridge-strip">MAGNUM + HEAT = puente entre OpenStack y Kubernetes</div>
+            </div>
+          </div>
+          <div class="panel orange gpu-pipeline">
+            <div class="cap orange-c">
+              <svg class="ico"><use href="#i-gpu"></use></svg> Ruta de GPU en el clúster
+            </div>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-gpu"></use></svg>RTX 3060<br />bare metal
+            </div>
+            <span class="arrow-h">→</span>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-lock"></use></svg>IOMMU<br />vfio-pci
+            </div>
+            <span class="arrow-h">→</span>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-monitor"></use></svg>VM GPU<br />Nova
+            </div>
+            <span class="arrow-h">→</span>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-cpu"></use></svg>Driver NVIDIA<br />Container Toolkit
+            </div>
+            <span class="arrow-h">→</span>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-puzzle"></use></svg>Device plugin<br />nvidia.com/gpu
+            </div>
+            <span class="arrow-h">→</span>
+            <div class="pipe-station">
+              <svg class="ico"><use href="#i-box"></use></svg>Pod vton-api<br />FASHN VTON
+            </div>
+          </div>
+          <div class="footer">
+            <span
+              ><strong>Idea central:</strong> OpenStack entrega VM, redes y GPU; Kubernetes
+              administra las cargas dentro de esas VM.</span
+            ><span class="page">26 / 28</span>
+          </div>
+        </section>
+        <template class="speaker-notes"
+          >Escenario ampliado de la presentación: 4 nodegroups, 5 VM, descriptor CPU y Caddy/HTTPS.
+          El informe adjunto documenta la etapa anterior: 3 nodegroups, 4 VM, sin TLS; los nodos del
+          clúster usan disco local y cinder_csi está deshabilitado. Se conservan los roles de los
+          cinco hosts, las redes, Magnum/Heat y la GPU del informe. El volumen de pesos del
+          descriptor se adjunta a la VM AI por iSCSI y se expone al pod mediante hostPath; no se
+          presenta como un montaje CSI directo del pod.</template
+        >
+      </section>
+      <section
+        aria-label="Diapositiva 27"
+        class="slide annex2-slide"
+        data-title="Topología física y de red del prototipo"
+        id="slide-27"
+      >
+        <section aria-label="Topología física y de red" class="annex2-content">
+          <div class="slide-head">
+            <div>
+              <h1>Topología física y de red del prototipo</h1>
+              <p>
+                Equipos distribuidos tras NAT · Túnel WireGuard sobre Amazon EC2 · Redes OpenStack
+              </p>
+            </div>
+            <div class="head-right">
+              <div class="head-pill">Hub-and-spoke</div>
+              <div class="head-pill">5 sitios + PC admin</div>
+            </div>
+          </div>
+          <div class="topology-area">
+            <div class="topology-top">
+              <div class="panel purple infra-summary">
+                <div class="cap purple-c">
+                  <svg class="ico"><use href="#i-server"></use></svg> Infraestructura disponible
+                </div>
+                <div class="numbers">
+                  <div><b>05</b><span>Nodos bare metal</span></div>
+                  <div><b>03</b><span>Hipervisores</span></div>
+                  <div><b>01</b><span>GPU RTX 3060</span></div>
+                </div>
+                <p class="annex2-inline-19">
+                  Hardware propio distribuido en ubicaciones diferentes.
+                </p>
+              </div>
+              <div class="panel aws-hub-big">
+                <div aria-label="Amazon Web Services" class="aws-mark">
+                  <b>aws</b
+                  ><svg viewBox="0 0 105 25">
+                    <path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h2>Amazon EC2</h2>
+                  <p>Concentrador VPN + Caddy + DNS</p>
+                  <span class="chip blue">Hub wg0 · 10.10.0.1</span
+                  ><span class="chip annex2-inline-20">UDP 51820</span>
+                </div>
+              </div>
+              <div class="panel blue topology-access">
+                <div class="cap blue-c">
+                  <svg class="ico"><use href="#i-user"></use></svg> Administración y acceso
+                </div>
+                <div class="links">
+                  <svg class="ico"><use href="#i-monitor"></use></svg>PC admin · Peer VPN ·
+                  10.10.0.20
+                </div>
+                <div class="links">
+                  <svg class="ico"><use href="#i-lock"></use></svg>HTTPS público → Caddy → VTON
+                  Studio
+                </div>
+                <div class="links">
+                  <svg class="ico"><use href="#i-net"></use></svg>DNS privado: *.icc115.lan
+                </div>
+              </div>
+            </div>
+            <!-- Conexiones vectoriales en el lienzo local 1822 x 644. -->
+            <svg
+              aria-label="Enlaces VPN WireGuard entre hub y nodos"
+              class="topology-wires"
+              preserveAspectRatio="none"
+              viewBox="0 0 1822 644"
+            >
+              <path
+                d="M911 222 V270 H183 V306 M911 270 H547 V306
+                   M911 270 H911 V306 M911 270 H1275 V306 M911 270 H1639 V306"
+              ></path>
+              <circle cx="183" cy="306" r="7"></circle>
+              <circle cx="547" cy="306" r="7"></circle>
+              <circle cx="911" cy="306" r="7"></circle>
+              <circle cx="1275" cy="306" r="7"></circle>
+              <circle cx="1639" cy="306" r="7"></circle>
+            </svg>
+            <div class="node-row">
+              <div class="node-card">
+                <svg class="ico huge"><use href="#i-server"></use></svg>
+                <div class="ident">wg0 · 10.10.0.11</div>
+                <h3>osa-node1</h3>
+                <div class="role">compute1<br />Master + worker<br />aggregate k8s-standard</div>
+                <div class="bridges">
+                  <span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span
+                  ><span>br-vlan</span>
+                </div>
+              </div>
+              <div class="node-card controller">
+                <svg class="ico huge"><use href="#i-server"></use></svg>
+                <div class="ident">wg0 · 10.10.0.12</div>
+                <h3>osa-node2</h3>
+                <div class="role">
+                  Controlador + deploy-node<br />OpenStack en LXC<br />Gateway NAT de ext-net
+                </div>
+                <div class="bridges">
+                  <span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span
+                  ><span>br-vlan</span>
+                </div>
+              </div>
+              <div class="node-card storage">
+                <svg class="ico huge"><use href="#i-database"></use></svg>
+                <div class="ident">wg0 · 10.10.0.13</div>
+                <h3>osa-node3</h3>
+                <div class="role">
+                  Cinder LVM / iSCSI<br />Prometheus + Grafana<br />Almacenamiento / métricas
+                </div>
+                <div class="bridges">
+                  <span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span
+                  ><span>br-vlan</span>
+                </div>
+              </div>
+              <div class="node-card">
+                <svg class="ico huge"><use href="#i-server"></use></svg>
+                <div class="ident">wg0 · 10.10.0.14</div>
+                <h3>osa-node4</h3>
+                <div class="role">compute2<br />VM web + VM ai<br />aggregates web / ai</div>
+                <div class="bridges">
+                  <span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span
+                  ><span>br-vlan</span>
+                </div>
+              </div>
+              <div class="node-card gpu">
+                <svg class="ico huge"><use href="#i-gpu"></use></svg>
+                <div class="ident">wg0 · 10.10.0.15</div>
+                <h3>osa-node5</h3>
+                <div class="role">
+                  compute-gpu<br />VM acelerada por GPU<br />NVIDIA RTX 3060 12 GB
+                </div>
+                <div class="bridges">
+                  <span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span
+                  ><span>br-vlan</span>
+                </div>
+              </div>
+            </div>
+            <div class="segment-row">
+              <div class="panel blue segment">
+                <div class="cap blue-c">
+                  <svg class="ico"><use href="#i-shield"></use></svg> WireGuard · transporte
+                </div>
+                <code>10.10.0.0/24</code>
+                <p>VPN cifrada entre sitios, con EC2 como concentrador.</p>
+              </div>
+              <div class="panel purple segment">
+                <div class="cap purple-c">
+                  <svg class="ico"><use href="#i-net"></use></svg> Gestión OpenStack
+                </div>
+                <code>172.29.x.0/24</code>
+                <p>Puentes br-mgmt, br-storage, br-vxlan y br-vlan.</p>
+              </div>
+              <div class="panel green segment">
+                <div class="cap green-c">
+                  <svg class="ico"><use href="#i-layers"></use></svg> private-net · VXLAN
+                </div>
+                <code>192.168.100.0/24</code>
+                <p>Red de VM del clúster · MTU 1370 bytes.</p>
+              </div>
+              <div class="panel orange segment">
+                <div class="cap orange-c">
+                  <svg class="ico"><use href="#i-globe"></use></svg> ext-net · Internet
+                </div>
+                <code>10.20.20.0/24</code>
+                <p>Gateway 10.20.20.1 / NAT en osa-node2.</p>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <span
+              >Los nodos se conectan al hub por <strong>WireGuard</strong>; los segmentos privados
+              de OpenStack se transportan sobre la VPN.</span
+            ><span class="page">27 / 28</span>
+          </div>
+        </section>
+        <template class="speaker-notes"
+          >Escenario ampliado de la presentación: 4 nodegroups, 5 VM, descriptor CPU y Caddy/HTTPS.
+          El informe adjunto documenta la etapa anterior: 3 nodegroups, 4 VM, sin TLS; los nodos del
+          clúster usan disco local y cinder_csi está deshabilitado. Se conservan los roles de los
+          cinco hosts, las redes, Magnum/Heat y la GPU del informe. El volumen de pesos del
+          descriptor se adjunta a la VM AI por iSCSI y se expone al pod mediante hostPath; no se
+          presenta como un montaje CSI directo del pod.</template
+        >
+      </section>
+      <section
+        aria-label="Diapositiva 28"
+        class="slide annex2-slide"
+        data-title="Flujo de aplicaciones, GPU y observabilidad"
+        id="slide-28"
+      >
+        <section aria-label="Flujo de aplicaciones y monitoreo" class="annex2-content">
+          <div class="slide-head">
+            <div>
+              <h1>Flujo de aplicaciones, GPU y observabilidad</h1>
+              <p>
+                Del navegador a VTON Studio · Inferencia GPU + descriptor CPU · Métricas
+                centralizadas
+              </p>
+            </div>
+            <div class="head-right">
+              <div class="head-pill">FASHN VTON v1.5</div>
+              <div class="head-pill">MobileNetV3-Small</div>
+            </div>
+          </div>
+          <div class="workflow-area">
+            <div class="request-row">
+              <div class="request-card">
+                <svg class="ico"><use href="#i-user"></use></svg>
+                <h3>Usuario</h3>
+                <p>Foto de persona + prenda</p>
+              </div>
+              <div class="arrow-h">→</div>
+              <div class="request-card aws-req">
+                <div class="aws-mark annex2-inline-21">
+                  <b class="annex2-inline-22">aws</b
+                  ><svg class="annex2-inline-23" viewBox="0 0 105 25">
+                    <path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"></path>
+                  </svg>
+                </div>
+                <h3>EC2 · Caddy HTTPS</h3>
+                <p>vton-ues.duckdns.org · VPN</p>
+              </div>
+              <div class="arrow-h">→</div>
+              <div class="request-card">
+                <svg class="ico"><use href="#i-monitor"></use></svg>
+                <h3>VTON Studio · Django</h3>
+                <p>VM web · osa-node4 · puerto 30900</p>
+              </div>
+              <div class="arrow-h">→</div>
+              <div class="request-card db-req">
+                <svg class="ico"><use href="#i-database"></use></svg>
+                <h3>Cola PostgreSQL 16</h3>
+                <p>Trabajos · reserva atómica</p>
+              </div>
+              <div class="arrow-h">→</div>
+              <div class="request-card">
+                <svg class="ico"><use href="#i-cpu"></use></svg>
+                <h3>Worker de VTON</h3>
+                <p>Procesa en orden · API interna</p>
+              </div>
+            </div>
+            <div class="branch-heading">
+              <span class="bar"></span>El worker ejecuta primero VTON y después consulta el
+              descriptor<span class="bar"></span>
+            </div>
+            <div class="work-branches">
+              <div class="panel orange work-branch">
+                <div class="branch-top">
+                  <div class="cap orange-c">
+                    <svg class="ico"><use href="#i-gpu"></use></svg> Inferencia generativa · GPU
+                  </div>
+                  <span class="chip orange">VM GPU · osa-node5 · NodePort 30800</span>
+                </div>
+                <div class="branch-pipe">
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-lock"></use></svg><strong>vton-api</strong
+                    ><span>FastAPI · X-API-Key</span>
+                  </div>
+                  <span class="arrow-h">→</span>
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-gpu"></use></svg><strong>RTX 3060 12 GB</strong
+                    ><span>PCI passthrough + device plugin</span>
+                  </div>
+                  <span class="arrow-h">→</span>
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-image"></use></svg><strong>FASHN VTON</strong
+                    ><span>Imagen virtual PNG</span>
+                  </div>
+                </div>
+              </div>
+              <div class="panel green work-branch">
+                <div class="branch-top">
+                  <div class="cap green-c">
+                    <svg class="ico"><use href="#i-cpu"></use></svg> Descriptor de prenda · CPU
+                  </div>
+                  <span class="chip green">VM ai · osa-node4 · ClusterIP 8080</span>
+                </div>
+                <div class="branch-pipe">
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-image"></use></svg><strong>Foto de prenda</strong
+                    ><span>Imagen original subida</span>
+                  </div>
+                  <span class="arrow-h">→</span>
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-cpu"></use></svg><strong>MobileNetV3</strong
+                    ><span>garment-describer · CPU</span>
+                  </div>
+                  <span class="arrow-h">→</span>
+                  <div class="branch-tile">
+                    <svg class="ico"><use href="#i-code"></use></svg><strong>JSON</strong
+                    ><span>Tipo · color · estilo</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="result-row">
+              <div class="panel teal result-card">
+                <svg class="ico"><use href="#i-image"></use></svg>
+                <div>
+                  <h3>Resultado 1 · Imagen generada</h3>
+                  <p>VTON devuelve una imagen de prueba virtual de prendas.</p>
+                </div>
+                <span class="chip">PNG · 576 × 864</span>
+              </div>
+              <div class="panel teal result-card">
+                <svg class="ico"><use href="#i-check"></use></svg>
+                <div>
+                  <h3>Resultado 2 · Descripción de la prenda</h3>
+                  <p>El descriptor en CPU complementa la imagen; su fallo no detiene el trabajo.</p>
+                </div>
+                <span class="chip">Estimación</span>
+              </div>
+            </div>
+            <div class="final-row">
+              <div class="panel green end-panel">
+                <div class="cap green-c">
+                  <svg class="ico"><use href="#i-chart"></use></svg> Observabilidad · Prometheus +
+                  Grafana en osa-node3
+                </div>
+                <div class="flow-chips">
+                  <span class="chip green">5 hosts · node_exporter</span
+                  ><span class="chip green">5 VM · node_exporter</span
+                  ><span class="chip green">OpenStack · exporter</span
+                  ><span class="chip green">Kubernetes · kube-state-metrics</span
+                  ><span class="chip green">GPU · DCGM</span>
+                </div>
+                <p>Observa cada capa sin depender de los servicios de la nube.</p>
+              </div>
+              <div class="panel purple end-panel">
+                <div class="cap purple-c">
+                  <svg class="ico"><use href="#i-disk"></use></svg> Ciclo de vida de los pesos de
+                  MobileNetV3
+                </div>
+                <div class="flow-chips">
+                  <span class="chip purple">Entrenamiento fuera de la nube</span
+                  ><span class="arrow-h annex2-inline-24">→</span
+                  ><span class="chip purple">Checkpoint best.pt</span
+                  ><span class="arrow-h annex2-inline-25">→</span
+                  ><span class="chip purple">Volumen Cinder (osa-node3)</span
+                  ><span class="arrow-h annex2-inline-26">→</span
+                  ><span class="chip purple">Pod AI (osa-node4)</span>
+                </div>
+                <p>
+                  Cinder se adjunta a la VM por iSCSI; el pod lee los pesos por hostPath. El
+                  entrenamiento se hace fuera del clúster.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="footer">
+            <span
+              ><strong>Flujo principal:</strong> web → cola → worker → VTON (GPU) → descriptor (CPU)
+              → resultados para el usuario.</span
+            ><span class="page">28 / 28</span>
+          </div>
+        </section>
+        <template class="speaker-notes"
+          >Escenario ampliado de la presentación: 4 nodegroups, 5 VM, descriptor CPU y Caddy/HTTPS.
+          El informe adjunto documenta la etapa anterior: 3 nodegroups, 4 VM, sin TLS; los nodos del
+          clúster usan disco local y cinder_csi está deshabilitado. Se conservan los roles de los
+          cinco hosts, las redes, Magnum/Heat y la GPU del informe. El volumen de pesos del
+          descriptor se adjunta a la VM AI por iSCSI y se expone al pod mediante hostPath; no se
+          presenta como un montaje CSI directo del pod.</template
+        >
+      </section>
     </main>
-    <div class="nav">
-      <button id="btnPrevious" aria-label="Anterior">←</button
-      ><span class="num" id="slideNumber">24 / 24</span
-      ><button id="btnNext" aria-label="Siguiente">→</button
-      ><button id="btnNotes" class="wide" title="Mostrar notas (N)">Notas</button
-      ><button id="btnFull" class="wide" title="Pantalla completa (F)">Pantalla</button
-      ><button id="btnPrint" class="wide" title="Imprimir / guardar PDF">Imprimir</button>
-    </div>
     <div class="notes-drawer" id="notes">
       <button id="closeNotes">Cerrar</button>
       <h3>Notas del presentador</h3>
       <p id="notesText">Sin notas.</p>
     </div>
     <div
+      aria-describedby="imageHelp"
+      aria-label="Vista ampliada de figura"
+      aria-modal="true"
       class="overlay"
       id="imageOverlay"
       role="dialog"
-      aria-modal="true"
-      aria-label="Vista ampliada de figura"
-      aria-describedby="imageHelp"
     >
       <img alt="Figura ampliada" draggable="false" />
       <div class="image-controls">
         <span id="imageHelp">Rueda: acercar / alejar · Arrastra para mover · Esc: cerrar</span>
-        <output id="imageZoom" aria-label="Nivel de zoom">100 %</output>
+        <output aria-label="Nivel de zoom" id="imageZoom">100 %</output>
         <button id="resetImageZoom" type="button">Restablecer</button>
         <button id="closeImageOverlay" type="button">Cerrar</button>
       </div>

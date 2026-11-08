@@ -1,0 +1,45 @@
+Presentation assets
+===================
+
+Inter Variable
+Source: https://github.com/rsms/inter
+Font: https://raw.githubusercontent.com/rsms/inter/master/docs/font-files/InterVariable.woff2
+License: SIL Open Font License 1.1; see fonts/LICENSE.txt.
+The font is served locally so the presentation also works offline.
+
+AWS architecture icons
+Source: https://aws.amazon.com/architecture/icons/
+Official package: Icon-package_07312026 (July 31, 2026).
+AWS permits these assets in architecture diagrams and presentations.
+The original official SVGs are stored in icons/aws.
+Only actual AWS components use AWS branding; the private cloud remains
+identified as OpenStack and Kubernetes.
+
+Existing figures
+The original project figures remain in images.
+The AWS network overview has an editable SVG counterpart, preserving its labels.
+Raster figures retain their original embedded text and fonts to avoid changing
+their content. HTML and inline SVG charts use the shared font.
+The external network SVG declares the same font stack with an Arial fallback.
+
+Editing
+Open the main HTML directly in a browser; no build or network access is required.
+Keep presentacion.css, presentacion.js and assets alongside the HTML when sharing.
+Formatting: 2 spaces, 100-character line target (.editorconfig and .prettierrc.json).
+
+Annex 2 integration
+The four editable diagrams from Anexar2 are appended as slides 25 through 28.
+anexar2.css isolates their native 1920 x 1080 layout inside the 1600 x 900 stage.
+toolbar-layout.css adapts the shared top controls to different viewport sizes.
+Both stylesheets must also remain alongside the main HTML when sharing.
+
+Report concordance
+The attached report documents the earlier deployment: 3 nodegroups, 4 VM,
+HTTP without TLS, local node disks and cinder_csi disabled.
+The presentation and Annex 2 show an expanded scenario: 4 nodegroups, 5 VM,
+a CPU descriptor VM and Caddy/HTTPS. These additions are not verified by
+the attached report and are explicitly identified in the new speaker notes.
+The five physical host roles, WireGuard addresses, private-net and ext-net,
+Magnum/Heat, GPU passthrough, VTON output and application ports match the report.
+Descriptor weights are attached to the AI VM from Cinder via iSCSI, then exposed
+to the pod through hostPath; this is not a direct pod CSI mount.

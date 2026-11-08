@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ICC115 · Arquitectura OpenStack + Kubernetes · Diagramas 16:9</title>
+<style>
+/* ==========================================================================
+   ICC115 — DIAGRAMAS EDITABLES FULL HD
+   Todos los textos, tarjetas, flechas e iconos son HTML/SVG nativos.
+   Lienzo base: 1920 x 1080. Edita las secciones <section class="slide">.
+   No se requieren bibliotecas ni conexión a Internet.
+   ========================================================================== */
+:root{--navy:#092144;--navy2:#153c70;--ink:#182b4a;--muted:#60718d;--blue:#2879df;--blue-p:#e7f2ff;--purple:#7749d3;--purple-p:#f1ecff;--red:#e34154;--red-p:#fff0f0;--green:#1b9d75;--green-p:#e7f9f1;--orange:#df8a22;--orange-p:#fff3df;--teal:#0f9eae;--teal-p:#e2f7f9;--line:#d9e4f0;--shadow:0 10px 28px rgba(17,52,98,.07)}
+*{box-sizing:border-box} html,body{margin:0;min-height:100%;background:#e9edf4;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink)}
+body{overflow:hidden}.toolbar{height:58px;padding:0 24px;background:#091b35;color:#e9f2ff;display:flex;align-items:center;gap:18px;justify-content:space-between;position:relative;z-index:40;box-shadow:0 3px 12px #02142c22}
+.brand{display:flex;align-items:center;gap:11px;font-size:15px;font-weight:800;white-space:nowrap;letter-spacing:.35px}.brand-mark{display:grid;place-items:center;width:32px;height:32px;border-radius:9px;background:#1c6fd3;color:#fff}.brand .sub{font-size:11px;color:#b3c8e6;font-weight:600;letter-spacing:.3px;display:block}
+.tabs{display:flex;align-items:center;gap:6px;padding:4px;background:#ffffff0c;border:1px solid #ffffff20;border-radius:13px}.tab{font:inherit;font-size:12px;font-weight:740;background:transparent;color:#c3d4ec;border:0;cursor:pointer;padding:9px 14px;border-radius:9px;transition:.17s;white-space:nowrap}.tab:hover{background:#ffffff15}.tab.active{color:#092144;background:#fff;box-shadow:0 2px 10px #0003}
+.actions{display:flex;gap:9px}.toolbtn{cursor:pointer;font:inherit;border:1px solid #ffffff31;background:#ffffff12;color:#eef5ff;padding:9px 12px;border-radius:9px;font-size:12px;font-weight:750}.toolbtn:hover{background:#ffffff26}.screen{height:calc(100vh - 58px);display:flex;align-items:center;justify-content:center;overflow:hidden;padding:8px;position:relative}
+.deck{width:1920px;height:1080px;position:relative;flex:none;transform-origin:center center;box-shadow:0 22px 64px #06214830;background:#f5f8fd;border-radius:17px;overflow:hidden}
+.slide{position:absolute;inset:0;display:none;overflow:hidden;background:radial-gradient(circle at 91% 13%,rgba(92,168,245,.10),transparent 27%),linear-gradient(160deg,#f7faff 0%,#f2f6fc 100%)}.slide.active{display:block}
+.slide:before{content:"";position:absolute;inset:0;opacity:.26;pointer-events:none;background-image:radial-gradient(#a7c2df 1px,transparent 1px);background-size:22px 22px;mask-image:linear-gradient(125deg,transparent 2%,black 100%)}
+.slide-head{position:absolute;top:31px;left:49px;right:49px;height:112px;border-radius:22px;display:flex;align-items:center;justify-content:space-between;padding:0 37px;gap:32px;background:linear-gradient(105deg,#092249 0%,#123e78 78%,#1e5395 100%);color:#fff;box-shadow:0 14px 29px #0d326035;overflow:hidden}
+.slide-head:after{content:"";position:absolute;width:350px;height:350px;border-radius:50%;border:1px solid #ffffff23;right:-125px;top:-170px;box-shadow:0 0 0 38px #ffffff07,0 0 0 80px #ffffff06;pointer-events:none}
+.slide-head h1{font-size:43px;letter-spacing:-1.35px;line-height:1.08;margin:0 0 9px;font-weight:840;white-space:nowrap}.slide-head p{margin:0;color:#bdd9f9;font-size:19px;font-weight:550;letter-spacing:.25px}.head-right{display:flex;gap:9px;align-items:center;z-index:1;flex:none}.head-pill{background:#ffffff16;border:1px solid #ffffff2e;padding:10px 17px;border-radius:13px;color:#e9f5ff;font-size:15px;font-weight:800;white-space:nowrap}
+.footer{position:absolute;bottom:24px;left:60px;right:60px;display:flex;justify-content:space-between;align-items:center;color:#8191a9;font-size:14px;font-weight:630;letter-spacing:.1px}.footer .page{font-weight:850;color:#55739a}.footer strong{color:#536c8a}
+.ico{width:27px;height:27px;flex:0 0 auto;vertical-align:middle;stroke:currentColor;stroke-width:1.85;fill:none;stroke-linecap:round;stroke-linejoin:round}.ico.sm{width:21px;height:21px}.ico.big{width:50px;height:50px}.ico.huge{width:64px;height:64px}.ico.brand-svg{width:60px;height:44px}
+.panel{background:#fff;border:1.5px solid #d8e4f2;border-radius:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}.panel.blue{background:linear-gradient(160deg,#fafdff,#edf6ff);border-color:#9bc5fa}.panel.purple{background:linear-gradient(160deg,#fff,#f4f0ff);border-color:#cbb5fa}.panel.red{background:linear-gradient(160deg,#fff,#fff1f3);border-color:#f1afba}.panel.green{background:linear-gradient(160deg,#fff,#ecfbf5);border-color:#afe4ce}.panel.orange{background:linear-gradient(160deg,#fff,#fff7eb);border-color:#efcd94}.panel.teal{background:linear-gradient(160deg,#fff,#ebfafc);border-color:#9fdce1}
+.cap{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:840;letter-spacing:-.25px;color:var(--navy);min-height:33px}.cap.blue-c{color:#1664ba}.cap.red-c{color:#c22d45}.cap.purple-c{color:#6e39c2}.cap.green-c{color:#15885f}.cap.orange-c{color:#b16d1c}.cap.teal-c{color:#0e8693}
+.kicker{font-size:12px;letter-spacing:1.3px;font-weight:900;color:#7a8da7;text-transform:uppercase}.mini{font-size:15px;color:#627492;line-height:1.35}.small{font-size:16px;color:#56708d}.chip{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:6px 10px;background:#fff;border:1px solid var(--line);border-radius:10px;color:#375578;font-size:15px;font-weight:760;white-space:nowrap}.chip.purple{color:#733bbf;background:#f1eaff;border-color:#dbc5fc}.chip.blue{color:#156ec9;background:#e8f3ff;border-color:#b5d9ff}.chip.red{color:#bb3144;background:#fff0f1;border-color:#f5c5cc}.chip.green{color:#11865f;background:#e6f7ef;border-color:#b0e5d0}.chip.orange{color:#a86716;background:#fff3e0;border-color:#f0d3a5}
+.tech-card{border:1px solid #dfe8f2;background:#fff;border-radius:12px;display:flex;align-items:center;gap:12px;padding:11px 13px;min-width:0;box-shadow:0 2px 7px #243e6007}.tech-card strong{font-size:18px;display:block;line-height:1.12;color:#173153}.tech-card span{display:block;font-size:13px;line-height:1.35;color:#70839b;margin-top:4px}.tech-card .ico{width:30px;height:30px;color:#2d79d3}
+.stat{display:flex;flex-direction:column;gap:5px;justify-content:center;align-items:center}.stat strong{font-size:31px;color:#123c70;line-height:1}.stat span{font-size:13px;color:#72859f;font-weight:700;white-space:nowrap}
+.arrow-v{font-size:28px;color:#8c60d3;font-weight:1000;line-height:1}.arrow-h{font-size:28px;color:#6486b0;font-weight:1000;line-height:1;text-align:center}
+.stepnum{width:35px;height:35px;border-radius:11px;display:grid;place-items:center;flex:none;background:#733fd3;color:#fff;font-size:19px;font-weight:880;box-shadow:0 3px 10px #6b3bc53a}
+.aws-mark{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;width:104px;flex:none;line-height:1;position:relative}.aws-mark b{font-size:51px;letter-spacing:-4px;color:#233d5b;font-weight:900;font-family:Arial,sans-serif}.aws-mark svg{width:95px;height:25px;margin-top:-1px}.aws-mark path{stroke:#ff9900;fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round}
+.icon-sq{display:grid;place-items:center;width:46px;height:46px;border-radius:12px;background:#eaf2ff;color:#2b70bd;flex:none}.icon-sq.red{background:#ffe8eb;color:#db3b4e}.icon-sq.green{background:#dff8ea;color:#0d9b62}.icon-sq.purple{background:#eee6ff;color:#7c42d4}.icon-sq.orange{background:#fff0d7;color:#d38923}.icon-sq.teal{background:#dff7fa;color:#1493a3}
+/* =========== 01 — Overview =========== */
+.overview-grid{position:absolute;top:161px;left:49px;right:49px;height:831px;display:grid;grid-template-columns:230px minmax(0,1fr) 290px;grid-template-rows:144px 174px 206px 111px 144px;gap:13px}
+.access{padding:16px 16px}.access .cap{font-size:17px}.access .person{margin-top:14px;display:flex;align-items:center;gap:11px}.access .person .ico{color:#2476d8;width:45px;height:45px}.access .person strong{font-size:17px;display:block;color:#1d426e}.access .person span{font-size:13px;color:#7086a4;display:block;margin-top:2px}
+.admin-access{grid-column:1;grid-row:2/4;padding:16px}.admin-access .login-tool{background:#fff;border:1px solid #dbe7f5;padding:11px 9px;border-radius:11px;margin-top:10px;display:flex;gap:10px;align-items:center;font-size:17px;font-weight:750}.login-tool .ico{color:#2767af}.admin-access .small-note{margin-top:13px;background:#eaf4ff;border-radius:10px;padding:12px;font-size:15px;color:#55708c;font-weight:680}
+.overview-app{grid-column:2;grid-row:1;padding:14px 17px}.layer-heading{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:12px}.layer-heading .cap{font-size:20px;min-height:27px}.layer-heading .chip{font-size:13px;padding:5px 8px}.application-row{display:grid;grid-template-columns:1fr 49px 1fr 49px 1fr;gap:7px;align-items:center}.app-tile{height:80px;background:#fff;border:1px solid #b8d4f0;border-radius:12px;display:flex;align-items:center;gap:12px;padding:12px 14px}.app-tile .ico{width:36px;height:36px;color:#276fc9}.app-tile strong{font-size:18px;display:block}.app-tile small{display:block;color:#71859e;font-size:13px;margin-top:3px}
+.overview-paas{grid-column:2;grid-row:2;padding:13px 16px}.vm-list{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.vm{min-width:0;background:#fff;border:1px solid #d8e4f3;border-radius:13px;height:110px;padding:13px 11px 11px;position:relative}.vm:before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--blue);border-radius:10px 10px 0 0}.vm.purple-v:before{background:var(--purple)}.vm.green-v:before{background:var(--green)}.vm.orange-v:before{background:var(--orange)}.vm.red-v:before{background:var(--red)}.vm-head{display:flex;gap:8px;align-items:center}.vm-head .ico{color:#276cc6}.vm-head strong{font-size:18px}.vm .desc{font-size:14px;color:#6d84a0;margin-top:6px}.vm .host{font-size:15px;font-weight:760;color:#315780;margin-top:3px}
+.overview-iaas{grid-column:2;grid-row:3;padding:13px 16px}.openstack-services{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin:12px 0}.service{height:89px;border-radius:11px;background:#fff;border:1px solid #eed5da;padding:11px 7px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px}.service .ico{width:28px;height:28px;color:#d94556}.service strong{font-size:14px;line-height:1.13;color:#443e58}.service span{font-size:12px;color:#866a7b}.basebar{height:39px;display:flex;align-items:center;justify-content:space-around;border:1px dashed #dbb4c2;border-radius:9px;background:#fff9fa;font-size:14px;color:#78586d;font-weight:800}
+.overview-network{grid-column:2;grid-row:4;padding:14px 17px}.net-row{display:flex;align-items:center;justify-content:space-between;gap:12px}.net-row .cap{font-size:20px}.nets{display:flex;gap:10px;margin-top:10px}.nets .chip{font-size:13px}
+.overview-physical{grid-column:1/4;grid-row:5;padding:13px 15px}.physical-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:10px}.physical-card{height:78px;background:white;border:1px solid #cbd8ea;border-radius:12px;display:flex;align-items:center;gap:13px;padding:9px 15px}.physical-card .ico{width:42px;height:42px;color:#2468a4}.physical-card strong{display:block;font-size:18px;color:#203c62}.physical-card span{display:block;font-size:13px;color:#657b97;margin-top:4px;white-space:normal}
+.overview-monitor{grid-column:3;grid-row:1/4;padding:15px 18px}.monitor-brands{display:flex;align-items:center;justify-content:space-evenly;gap:12px;margin-top:18px;margin-bottom:18px}.monitor-brand{display:flex;flex-direction:column;align-items:center;gap:6px;color:#213e61;font-size:16px;font-weight:900}.monitor-brand .ico{width:49px;height:49px}.monitor-brand .prom{color:#e84a36}.monitor-brand .graf{color:#e69a21}.metric-list{border-top:1px solid #d4e6dc;padding-top:9px}.metric{display:flex;align-items:center;gap:10px;padding:10px 0;font-size:15px;font-weight:760;color:#234e43;border-bottom:1px solid #e4f0e9}.metric .ico{color:#0c9a78;width:25px;height:25px}.metric small{display:block;color:#759187;font-size:12px;margin-top:4px;font-weight:600}.monitor-note{font-size:14px;line-height:1.4;color:#54816e;background:#e2f5e9;margin-top:12px;border-radius:10px;padding:10px 12px}
+.overview-hub{grid-column:3;grid-row:4;display:flex;align-items:center;padding:10px 13px;gap:11px}.overview-hub .aws-mark{width:83px}.overview-hub .aws-mark b{font-size:43px}.overview-hub .aws-mark svg{width:78px;height:21px}.overview-hub strong{font-size:16px;display:block}.overview-hub span{font-size:13px;color:#73839e;display:block;margin-top:5px}
+.overview-label{grid-column:1;grid-row:4;padding:14px;display:flex;align-items:center;gap:9px}.overview-label .ico{width:33px;height:33px;color:#2875cb}.overview-label strong{font-size:16px;line-height:1.25}.overview-label span{font-size:12px;color:#687c96;display:block;margin-top:5px}
+/* =========== 02 — Interaction =========== */
+.interaction-cols{position:absolute;top:161px;left:49px;right:49px;height:739px;display:grid;grid-template-columns:450px 653px minmax(0,1fr);gap:18px}.interaction-cols>.panel{padding:19px 19px}
+.bigpanel-title{display:flex;align-items:center;gap:13px;font-size:26px;color:#18355c;font-weight:870;letter-spacing:-.6px}.bigpanel-title .ico{width:39px;height:39px}.bigpanel-sub{font-size:14px;color:#6b80a0;margin-top:4px;padding-left:50px}
+.iaas-services{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.iaas-services .tech-card{height:122px;align-items:flex-start;padding:18px 12px}.iaas-services .tech-card strong{font-size:19px}.iaas-services .tech-card span{font-size:14px;margin-top:8px}.iaas-services .tech-card .ico{color:#d94658;width:35px;height:35px}.magnum-bridge{background:#f0e6ff;border:2px solid #ae8ae9!important}.magnum-bridge .ico{color:#7f4bd4!important}
+.flow-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:15px}.flow-header strong{font-size:26px;color:#443376}.flow-header .ico{color:#7754cc;width:34px;height:34px}.flowsteps{display:flex;flex-direction:column;gap:8px}.flowstep{min-height:60px;border:1px solid #dbd9ed;background:#fff;border-radius:12px;display:flex;align-items:center;gap:15px;padding:10px 14px;position:relative;transition:.15s}.flowstep:hover{transform:translateX(5px);border-color:#9068d7;box-shadow:0 5px 12px #6c4da122}.flowstep .ico{color:#6240b8;width:27px;height:27px}.flowstep strong{font-size:18px;color:#274064;font-weight:760;line-height:1.13}.flowstep small{font-size:13px;color:#8291a6}.flowstep .stepnum{width:34px;height:34px;font-size:17px;border-radius:50%}.flowstep:nth-child(2n){background:#f7f4ff}.flowstep:last-child{background:#ebfaf1;border-color:#9eddb9}
+.k8s-nodes{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:21px}.k8s-node{height:146px;border:1px solid #c7d9f3;background:#fff;border-radius:13px;padding:15px 16px}.k8s-node .top{display:flex;align-items:center;gap:9px;margin-bottom:10px}.k8s-node .ico{color:#216dcc;width:30px;height:30px}.k8s-node strong{font-size:21px;color:#183d69}.k8s-node small{font-size:15px;color:#69809a;display:block;margin-top:4px}.k8s-node .tag{font-size:14px;color:#176baa;font-weight:800;margin-top:10px}.k8s-node.last{grid-column:1/3;height:115px;display:flex;align-items:center;gap:16px}.k8s-node.last .top{margin-bottom:0}.k8s-node.last .tag{margin-top:5px}
+.bridge-strip{margin-top:17px;background:linear-gradient(100deg,#f2ebff,#eaf3ff);border:1px solid #b9bee7;padding:14px;border-radius:12px;font-size:19px;font-weight:840;text-align:center;color:#5541a1}
+.gpu-pipeline{position:absolute;left:49px;right:49px;top:914px;height:109px;padding:13px 20px;display:flex;gap:12px;align-items:center;justify-content:space-between}.gpu-pipeline .cap{font-size:19px;white-space:nowrap;min-width:240px}.gpu-pipeline .pipe-station{padding:7px 9px;flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;text-align:center;border:1px solid #f3d6a8;border-radius:10px;background:#fff;font-size:15px;font-weight:800;height:74px;color:#a76511}.pipe-station .ico{width:25px;height:25px}.gpu-pipeline .arrow-h{font-size:22px;color:#d89544}
+/* =========== 03 — Topology =========== */
+.topology-area{position:absolute;top:165px;left:49px;right:49px;height:831px}.topology-top{display:grid;grid-template-columns:1fr 1.05fr 1fr;gap:25px;height:222px}.topology-top>.panel{padding:23px}.infra-summary .numbers{display:flex;align-items:flex-end;gap:30px;margin-top:18px}.infra-summary .numbers b{font-size:48px;color:#1b5a9e;display:block;line-height:1}.infra-summary .numbers span{font-size:15px;color:#6c809b;font-weight:750}
+.aws-hub-big{display:flex;align-items:center;justify-content:center;gap:14px;background:linear-gradient(160deg,#fff,#eaf4ff)!important;border:2px solid #82b3f2!important}.aws-hub-big .aws-mark{width:138px}.aws-hub-big .aws-mark b{font-size:67px}.aws-hub-big .aws-mark svg{width:122px;height:28px}.aws-hub-big h2{font-size:31px;letter-spacing:-.7px;margin:0;color:#153a65}.aws-hub-big p{font-size:18px;margin:8px 0;color:#627f9d}.aws-hub-big .chip{margin-top:8px}
+.topology-access .links{display:flex;align-items:center;gap:10px;margin-top:17px;font-size:15px;font-weight:760;color:#345b8b}.topology-access .links .ico{color:#2178d2;width:22px;height:22px}
+.topology-wires{position:absolute;left:0;top:0;width:100%;height:644px;pointer-events:none;z-index:0;overflow:visible}.topology-wires path{stroke:#347edb;stroke-width:4;fill:none;stroke-linecap:round;stroke-linejoin:round}.topology-wires circle{fill:#347edb;stroke:#fff;stroke-width:3}
+.node-row{position:relative;z-index:1;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px;margin-top:90px;height:329px}.node-card{padding:17px;background:#fff;border:1.8px solid #b9cee6;border-radius:18px;box-shadow:var(--shadow);position:relative;overflow:hidden}.node-card.controller{border-color:#ec9dab;background:linear-gradient(165deg,#fff,#fff1f4)}.node-card.storage{border-color:#9cdcbf;background:linear-gradient(165deg,#fff,#f0fbf5)}.node-card.gpu{border-color:#eac286;background:linear-gradient(165deg,#fff,#fff4e5)}.node-card h3{font-size:24px;color:#214267;margin:13px 0 7px}.node-card .ident{font-size:14px;color:#4876b6;font-weight:810}.node-card .role{font-size:17px;line-height:1.42;color:#345576;font-weight:650;min-height:78px}.node-card .ico.huge{color:#376eac}.node-card.gpu .ico.huge{color:#c27c28}.node-card .bridges{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:14px}.node-card .bridges span{background:#f1f6fb;border:1px solid #dae5f2;font-size:14px;color:#516f90;padding:7px 8px;border-radius:8px;text-align:center;font-weight:850}
+.segment-row{position:absolute;left:0;right:0;bottom:0;height:160px;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.segment{padding:18px 20px}.segment .cap{font-size:18px}.segment p{font-size:15px;color:#536d88;margin:12px 0 0;line-height:1.38}.segment code{display:inline-block;font-size:20px;font-weight:870;color:#254970;background:#f2f6fd;border-radius:8px;padding:7px 10px;margin-top:9px}
+/* =========== 04 — Flow / Monitoring =========== */
+.workflow-area{position:absolute;top:167px;left:49px;right:49px;height:818px}.request-row{display:grid;grid-template-columns:1fr 49px 1fr 49px 1.3fr 49px 1fr 49px 1.1fr;gap:8px;height:160px;align-items:center}.request-card{height:149px;border-radius:17px;padding:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:7px;background:#fff;border:1.6px solid #cee0f0;box-shadow:var(--shadow)}.request-card .ico{color:#236fbf;width:44px;height:44px}.request-card h3{font-size:20px;margin:0;color:#183e65}.request-card p{font-size:14px;color:#6b80a0;margin:0;line-height:1.25}.request-card.aws-req{background:#f1f8ff;border-color:#8ebff3}.request-card.db-req{background:#f5eeff;border-color:#cbb3f6}
+.branch-heading{height:60px;display:flex;justify-content:center;gap:35px;align-items:center;color:#5d51ab;font-size:19px;font-weight:850}.branch-heading .bar{height:2px;width:260px;background:#bcc7ec}.work-branches{display:grid;grid-template-columns:1fr 1fr;gap:22px;height:265px}.work-branch{padding:20px 25px}.branch-top{display:flex;gap:12px;align-items:center;justify-content:space-between}.branch-top .cap{font-size:23px}.branch-top .chip{font-size:14px}.branch-pipe{display:grid;grid-template-columns:1fr 45px 1fr 45px 1fr;gap:6px;align-items:center;margin-top:22px}.branch-tile{height:135px;border:1px solid #dce6f1;border-radius:13px;background:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:7px;text-align:center;padding:10px}.branch-tile .ico{width:37px;height:37px;color:#2c75c3}.branch-tile strong{font-size:18px;color:#23446b}.branch-tile span{font-size:13px;color:#6b84a1}.work-branch.orange .branch-tile .ico{color:#cb7f19}.work-branch.green .branch-tile .ico{color:#108c66}
+.result-row{display:grid;grid-template-columns:1fr 1fr;gap:22px;height:137px;margin-top:18px}.result-card{padding:18px 24px;display:flex;align-items:center;gap:18px}.result-card .ico{width:45px;height:45px;color:#1e86a4}.result-card h3{margin:0;color:#1b476b;font-size:21px}.result-card p{margin:8px 0 0;font-size:16px;color:#67819c}.result-card .chip{margin-left:auto}
+.final-row{display:grid;grid-template-columns:1.04fr 1fr;gap:22px;margin-top:18px;height:188px}.end-panel{padding:18px 22px}.end-panel .cap{font-size:20px}.flow-chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:13px}.flow-chips .chip{font-size:14px}.end-panel p{margin:12px 0 0;font-size:15px;color:#63809d;line-height:1.4}.connection-legend{display:flex;gap:11px;align-items:center;margin-top:15px}.connection-legend .chip{font-size:13px}
+/* controls / print */
+.page-note{position:absolute;bottom:56px;left:55px;color:#a8b5c8;font-size:12px}.help-tip{position:absolute;bottom:12px;right:25px;color:#7d8ea4;font-size:11px}
+@media(max-width:1240px){.brand .sub{display:none}.toolbar{padding:0 10px;gap:7px}.tab{font-size:10px;padding:8px 8px}.toolbtn{font-size:11px;padding:7px 8px}.brand{font-size:11px}}
+@media print{html,body{background:#fff;overflow:visible}body{margin:0}.toolbar{display:none}.screen{display:block;padding:0;height:auto;overflow:visible}.deck{width:100%;height:auto;box-shadow:none;overflow:visible;transform:none!important;border-radius:0}.slide,.slide.active{position:relative;width:1920px;height:1080px;display:block!important;page-break-after:always;break-after:page;-webkit-print-color-adjust:exact;print-color-adjust:exact}@page{size:16in 9in;margin:0}}
+</style>
+</head>
+<body>
+<!-- Sistema gráfico de iconos SVG, totalmente integrado y editable. -->
+<svg style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><defs>
+ <symbol id="i-cloud" viewBox="0 0 24 24"><path d="M7 18h10a4.5 4.5 0 0 0 .3-9A6 6 0 0 0 6 10.3 4 4 0 0 0 7 18Z"/></symbol>
+ <symbol id="i-server" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="8" rx="2"/><rect x="3" y="13" width="18" height="8" rx="2"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></symbol>
+ <symbol id="i-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="15" rx="2"/><path d="M8 22h8m-4-4v4m-6-9h12"/></symbol>
+ <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+ <symbol id="i-terminal" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><path d="m6 9 3 3-3 3m6 0h6"/></symbol>
+ <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1"/><rect x="3" y="13" width="8" height="8" rx="1"/><rect x="13" y="13" width="8" height="8" rx="1"/></symbol>
+ <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 2 4 6v6c0 5 3 8 8 10 5-2 8-5 8-10V6l-8-4Z"/><path d="m9 12 2 2 4-4"/></symbol>
+ <symbol id="i-net" viewBox="0 0 24 24"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M10.5 7.8 6.4 16M13.5 7.8l4.1 8.2M8 19h8"/></symbol>
+ <symbol id="i-layers" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7l10-5Zm-10 10 10 5 10-5M2 17l10 5 10-5"/></symbol>
+ <symbol id="i-cube" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5Zm-9 5v10l9 5 9-5V7m-9 5v10"/></symbol>
+ <symbol id="i-database" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 4 18 4 18 0V5M3 12c0 4 18 4 18 0"/></symbol>
+ <symbol id="i-image" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="18" rx="2"/><circle cx="8" cy="9" r="2"/><path d="m3 18 6-6 4 4 3-3 6 6"/></symbol>
+ <symbol id="i-fire" viewBox="0 0 24 24"><path d="M12 22c-4.7 0-8-3-8-7 0-4 4-7 5-12 3 2 3 6 5 6 1-1 2-3 2-5 4 4 5 7 5 11 0 4-4 7-9 7Z"/><path d="M12 22c-2 0-4-2-4-4s3-5 4-6c.5 3 4 4 4 6s-2 4-4 4Z"/></symbol>
+ <symbol id="i-key" viewBox="0 0 24 24"><circle cx="8" cy="8" r="5"/><path d="m12 12 9 9m-4-4 2-2m-5-1 2-2"/></symbol>
+ <symbol id="i-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 9h6v6H9zM3 9h3m-3 6h3m12-6h3m-3 6h3M9 3v3m6-3v3m-6 12v3m6-3v3"/></symbol>
+ <symbol id="i-gpu" viewBox="0 0 24 24"><rect x="2" y="5" width="19" height="14" rx="2"/><circle cx="11" cy="12" r="4"/><path d="M21 9h2m-2 6h2M7 8l8 8m0-8-8 8"/></symbol>
+ <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18M7 16l4-5 3 3 6-7"/><path d="M16 7h4v4"/></symbol>
+ <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></symbol>
+ <symbol id="i-puzzle" viewBox="0 0 24 24"><path d="M3 3h7c-.8 2.5.5 4 2 4s2.8-1.5 2-4h7v7c-2.5-.8-4 .5-4 2s1.5 2.8 4 2v7h-7c.8-2.5-.5-4-2-4s-2.8 1.5-2 4H3v-7c2.5.8 4-.5 4-2s-1.5-2.8-4-2V3Z"/></symbol>
+ <symbol id="i-lock" viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="12" rx="2"/><path d="M7 10V7a5 5 0 0 1 10 0v3m-5 5v3"/></symbol>
+ <symbol id="i-k8s" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2"/><path d="M12 2v8m0 4v8M2 12h8m4 0h8M5 5l5.5 5.5m3 3L19 19M19 5l-5.5 5.5m-3 3L5 19"/></symbol>
+ <symbol id="i-disk" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="16" cy="12" r="3"/><path d="M5 15h5"/></symbol>
+ <symbol id="i-code" viewBox="0 0 24 24"><path d="m8 5-7 7 7 7M16 5l7 7-7 7M14 3l-4 18"/></symbol>
+ <symbol id="i-box" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M9 4v5"/></symbol>
+ <symbol id="i-check" viewBox="0 0 24 24"><path d="m4 12 5 5L20 6"/></symbol>
+ <symbol id="i-package" viewBox="0 0 24 24"><path d="m12 2 9 5-9 5-9-5 9-5ZM3 7v10l9 5 9-5V7m-9 5v10M7.5 4.5l9 5"/></symbol>
+ <symbol id="i-github" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 19v-3c-3-1-4-5-2-7 0-2 1-3 2-4 2 0 2 1 4 1s2-1 4-1c1 1 2 2 2 4 2 2 1 6-2 7v3m-8-5h8"/></symbol>
+</defs></svg>
+<header class="toolbar">
+ <div class="brand"><div class="brand-mark"><svg class="ico" style="width:20px;height:20px"><use href="#i-cloud"></use></svg></div><div>ICC115 · CLOUD LAB<span class="sub">Universidad de El Salvador · Diagramas editables</span></div></div>
+ <nav class="tabs" aria-label="Diagramas">
+  <button class="tab active" data-page="0">01 · Arquitectura general</button>
+  <button class="tab" data-page="1">02 · OpenStack ↔ Kubernetes</button>
+  <button class="tab" data-page="2">03 · Red y nodos físicos</button>
+  <button class="tab" data-page="3">04 · Aplicaciones y monitoreo</button>
+ </nav>
+ <div class="actions"><button class="toolbtn" id="prev" title="Flecha izquierda">◀</button><button class="toolbtn" id="next" title="Flecha derecha">▶</button><button class="toolbtn" id="full" title="Pantalla completa (F)">⛶ Pantalla completa</button><button class="toolbtn" id="print" title="Imprimir las 4 diapositivas (P)">⎙ Imprimir</button></div>
+</header>
+<main class="screen" id="screen"><div class="deck" id="deck">
+<!-- ==================================================================== -->
+<!-- DIAGRAMA 01 · ARQUITECTURA GLOBAL                                   -->
+<!-- ==================================================================== -->
+<section class="slide active" id="diagrama-1" aria-label="Arquitectura general">
+ <div class="slide-head"><div><h1>Arquitectura general · OpenStack + Kubernetes</h1><p>Nube privada distribuida · Desde los equipos físicos hasta los servicios de IA</p></div><div class="head-right"><div class="head-pill">5 servidores físicos</div><div class="head-pill">4 nodegroups · 5 VM</div></div></div>
+ <div class="overview-grid">
+  <div class="panel blue access" style="grid-column:1;grid-row:1"><div class="cap"><svg class="ico"><use href="#i-user"/></svg> Acceso de usuarios</div><div class="person"><svg class="ico"><use href="#i-monitor"/></svg><div><strong>VTON Studio</strong><span>Navegador · HTTPS público</span></div></div></div>
+  <div class="panel blue overview-app"><div class="layer-heading"><div class="cap blue-c"><svg class="ico"><use href="#i-layers"/></svg> SaaS · Aplicaciones del caso de estudio</div><span class="chip blue">Desplegadas sobre Kubernetes</span></div><div class="application-row">
+   <div class="app-tile"><svg class="ico"><use href="#i-monitor"/></svg><div><strong>VTON Studio</strong><small>Django · web · worker · PostgreSQL</small></div></div><div class="arrow-h">→</div>
+   <div class="app-tile"><svg class="ico" style="color:#cc7b22"><use href="#i-gpu"/></svg><div><strong>vton-api</strong><small>FASHN VTON v1.5 · GPU</small></div></div><div class="arrow-h">+</div>
+   <div class="app-tile"><svg class="ico" style="color:#24946e"><use href="#i-cpu"/></svg><div><strong>garment-describer</strong><small>MobileNetV3-Small · CPU</small></div></div>
+  </div></div>
+  <div class="panel blue overview-paas"><div class="layer-heading"><div class="cap blue-c"><svg class="ico"><use href="#i-k8s"/></svg> PaaS · Kubernetes <strong style="font-weight:860;color:#123e78">k8s-vton</strong></div><span class="chip blue">Magnum · 4 nodegroups / 5 VM · Fedora CoreOS 38</span></div>
+   <div class="vm-list">
+    <div class="vm purple-v"><div class="vm-head"><svg class="ico"><use href="#i-server"/></svg><strong>Master</strong></div><div class="host">osa-node1</div><div class="desc">Plano de control</div></div>
+    <div class="vm"><div class="vm-head"><svg class="ico"><use href="#i-server"/></svg><strong>Worker</strong></div><div class="host">osa-node1</div><div class="desc">Carga general</div></div>
+    <div class="vm green-v"><div class="vm-head"><svg class="ico"><use href="#i-monitor"/></svg><strong>Web</strong></div><div class="host">osa-node4</div><div class="desc">VTON Studio</div></div>
+    <div class="vm orange-v"><div class="vm-head"><svg class="ico"><use href="#i-gpu"/></svg><strong>GPU</strong></div><div class="host">osa-node5</div><div class="desc">RTX 3060 / vton-api</div></div>
+    <div class="vm red-v"><div class="vm-head"><svg class="ico"><use href="#i-cpu"/></svg><strong>AI</strong></div><div class="host">osa-node4</div><div class="desc">Descriptor en CPU</div></div>
+   </div>
+  </div>
+  <div class="panel red overview-iaas"><div class="layer-heading"><div class="cap red-c"><svg class="ico"><use href="#i-cloud"/></svg> IaaS · OpenStack-Ansible 33.0.1</div><span class="chip red">Servicios LXC · Controlador osa-node2</span></div>
+   <div class="openstack-services">
+    <div class="service"><svg class="ico"><use href="#i-key"/></svg><strong>Keystone</strong><span>Identidad</span></div>
+    <div class="service"><svg class="ico"><use href="#i-cube"/></svg><strong>Nova</strong><span>Cómputo</span></div>
+    <div class="service"><svg class="ico"><use href="#i-chart"/></svg><strong>Placement</strong><span>Inventario</span></div>
+    <div class="service"><svg class="ico"><use href="#i-net"/></svg><strong>Neutron</strong><span>OVS · Red</span></div>
+    <div class="service"><svg class="ico"><use href="#i-image"/></svg><strong>Glance</strong><span>Imágenes</span></div>
+    <div class="service"><svg class="ico"><use href="#i-database"/></svg><strong>Cinder</strong><span>LVM / iSCSI</span></div>
+    <div class="service"><svg class="ico"><use href="#i-fire"/></svg><strong>Heat</strong><span>Orquestación</span></div>
+    <div class="service" style="border-color:#ad8be9;background:#f5efff"><svg class="ico" style="color:#7946ca"><use href="#i-k8s"/></svg><strong>Magnum</strong><span>Clústeres K8s</span></div>
+   </div><div class="basebar"><span>Horizon / APIs</span><span>◆</span><span>HAProxy</span><span>◆</span><span>Galera</span><span>◆</span><span>RabbitMQ</span><span>◆</span><span>memcached</span></div>
+  </div>
+  <div class="panel blue overview-network"><div class="net-row"><div class="cap blue-c"><svg class="ico"><use href="#i-shield"/></svg> Red distribuida · WireGuard VPN</div><span class="chip">Hub-and-spoke cifrado · 10.10.0.0/24</span></div><div class="nets"><span class="chip blue">br-mgmt · Gestión</span><span class="chip purple">private-net · VXLAN</span><span class="chip orange">ext-net · NAT</span><span class="chip">br-storage · iSCSI</span></div></div>
+  <div class="panel blue overview-label"><svg class="ico"><use href="#i-terminal"/></svg><div><strong>Acceso administrativo</strong><span>Horizon · CLI · kubectl · DNS interno</span></div></div>
+  <div class="panel green overview-monitor"><div class="cap green-c"><svg class="ico"><use href="#i-chart"/></svg> Monitoreo transversal</div><div class="mini" style="margin-top:5px">Fuera de OpenStack y Kubernetes · <strong>osa-node3</strong></div><div class="monitor-brands"><div class="monitor-brand"><svg class="ico prom"><use href="#i-fire"/></svg>Prometheus</div><div class="monitor-brand"><svg class="ico graf"><use href="#i-chart"/></svg>Grafana</div></div><div class="metric-list">
+   <div class="metric"><svg class="ico"><use href="#i-server"/></svg><div>node_exporter<small>Cómputo, memoria, disco y redes</small></div></div>
+   <div class="metric"><svg class="ico"><use href="#i-cloud"/></svg><div>openstack-exporter<small>Recursos de la nube / Placement</small></div></div>
+   <div class="metric"><svg class="ico"><use href="#i-k8s"/></svg><div>kube-state-metrics<small>Estado del clúster y pods</small></div></div>
+   <div class="metric"><svg class="ico"><use href="#i-gpu"/></svg><div>dcgm-exporter<small>GPU · VRAM · temperatura</small></div></div>
+  </div><div class="monitor-note">Recolecta métricas de <strong>5 hosts + 5 VM + OpenStack + K8s + GPU</strong>.</div></div>
+  <div class="panel orange overview-hub"><div class="aws-mark" aria-label="Amazon AWS"><b>aws</b><svg viewBox="0 0 105 25"><path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"/></svg></div><div><strong>Amazon EC2</strong><span>Hub WireGuard + DNS + Caddy HTTPS</span></div></div>
+  <div class="panel purple overview-physical"><div class="layer-heading" style="margin-bottom:0"><div class="cap purple-c"><svg class="ico"><use href="#i-server"/></svg> Capa física · Bare metal distribuido</div><span class="chip">5 equipos en sitios diferentes · 3 hipervisores Nova</span></div><div class="physical-row">
+   <div class="physical-card"><svg class="ico"><use href="#i-server"/></svg><div><strong>osa-node1</strong><span>compute1 · master + worker</span></div></div>
+   <div class="physical-card"><svg class="ico" style="color:#ca4a5c"><use href="#i-server"/></svg><div><strong>osa-node2</strong><span>Controlador / deploy-node / NAT</span></div></div>
+   <div class="physical-card"><svg class="ico" style="color:#23946e"><use href="#i-database"/></svg><div><strong>osa-node3</strong><span>storage1 · Cinder · monitoreo</span></div></div>
+   <div class="physical-card"><svg class="ico"><use href="#i-server"/></svg><div><strong>osa-node4</strong><span>compute2 · web + descriptor</span></div></div>
+   <div class="physical-card"><svg class="ico" style="color:#d58b26"><use href="#i-gpu"/></svg><div><strong>osa-node5</strong><span>compute-gpu · RTX 3060 12 GB</span></div></div>
+  </div></div>
+ </div><div class="footer"><span>ICC115 · Infraestructura Cloud · <strong>Arquitectura de cinco capas y monitoreo transversal</strong></span><span class="page">01 / 04</span></div>
+</section>
+<!-- ==================================================================== -->
+<!-- DIAGRAMA 02 · PUENTE OPENSTACK / KUBERNETES                        -->
+<!-- ==================================================================== -->
+<section class="slide" id="diagrama-2" aria-label="Interacción OpenStack Kubernetes">
+ <div class="slide-head"><div><h1>Interacción OpenStack ↔ Kubernetes</h1><p>Magnum transforma infraestructura virtual en una plataforma de contenedores operativa</p></div><div class="head-right"><div class="head-pill">IaaS → Magnum / Heat → PaaS</div></div></div>
+ <div class="interaction-cols">
+  <div class="panel red"><div class="bigpanel-title" style="color:#c73d50"><svg class="ico"><use href="#i-cloud"/></svg> OpenStack · IaaS</div><div class="bigpanel-sub">OpenStack-Ansible 33.0.1 · servicios LXC</div><div class="iaas-services">
+   <div class="tech-card"><svg class="ico"><use href="#i-key"/></svg><div><strong>Keystone</strong><span>Identidad · autenticación</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-cube"/></svg><div><strong>Nova + Placement</strong><span>VM · inventario · aggregates</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-net"/></svg><div><strong>Neutron · OVS</strong><span>Redes y conectividad</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-image"/></svg><div><strong>Glance</strong><span>Imagen Fedora CoreOS 38</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-database"/></svg><div><strong>Cinder</strong><span>Volumen de pesos AI</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-fire"/></svg><div><strong>Heat</strong><span>Pilas de orquestación</span></div></div>
+   <div class="tech-card magnum-bridge"><svg class="ico"><use href="#i-k8s"/></svg><div><strong>Magnum</strong><span>API de clústeres Kubernetes</span></div></div>
+   <div class="tech-card"><svg class="ico"><use href="#i-monitor"/></svg><div><strong>Horizon / API</strong><span>Administración y servicios</span></div></div>
+  </div></div>
+  <div class="panel purple"><div class="flow-header"><strong>Secuencia de aprovisionamiento</strong><svg class="ico"><use href="#i-layers"/></svg></div><div class="flowsteps">
+   <div class="flowstep"><span class="stepnum">1</span><svg class="ico"><use href="#i-user"/></svg><strong>Administrador solicita un clúster con plantilla <em>k8s-fcos38-v4</em></strong></div>
+   <div class="flowstep"><span class="stepnum">2</span><svg class="ico"><use href="#i-k8s"/></svg><strong>Magnum recibe la solicitud y gestiona el clúster</strong></div>
+   <div class="flowstep"><span class="stepnum">3</span><svg class="ico"><use href="#i-fire"/></svg><strong>Magnum invoca Heat para orquestar recursos</strong></div>
+   <div class="flowstep"><span class="stepnum">4</span><svg class="ico"><use href="#i-cube"/></svg><strong>Heat solicita a Nova las máquinas virtuales</strong></div>
+   <div class="flowstep"><span class="stepnum">5</span><svg class="ico"><use href="#i-layers"/></svg><strong>Placement + host aggregates ubican cada VM</strong></div>
+   <div class="flowstep"><span class="stepnum">6</span><svg class="ico"><use href="#i-image"/></svg><strong>Glance suministra la imagen Fedora CoreOS 38</strong></div>
+   <div class="flowstep"><span class="stepnum">7</span><svg class="ico"><use href="#i-net"/></svg><strong>Neutron conecta <em>private-net</em> y <em>ext-net</em></strong></div>
+   <div class="flowstep"><span class="stepnum">8</span><svg class="ico"><use href="#i-gpu"/></svg><strong>Nova entrega la GPU a la VM con PCI passthrough</strong></div>
+   <div class="flowstep"><span class="stepnum">9</span><svg class="ico"><use href="#i-k8s"/></svg><strong>Kubernetes inicia nodos y programa los pods</strong></div>
+  </div></div>
+  <div class="panel blue"><div class="bigpanel-title" style="color:#236cc4"><svg class="ico"><use href="#i-k8s"/></svg> Kubernetes · PaaS</div><div class="bigpanel-sub">k8s-vton · 4 nodegroups · 5 VM · containerd + Calico</div><div class="k8s-nodes">
+   <div class="k8s-node"><div class="top"><svg class="ico"><use href="#i-server"/></svg><strong>Master</strong></div><small>default · osa-node1</small><div class="tag">API · scheduler · etcd</div></div>
+   <div class="k8s-node"><div class="top"><svg class="ico"><use href="#i-server"/></svg><strong>Worker</strong></div><small>default · osa-node1</small><div class="tag">Pods generales · métricas</div></div>
+   <div class="k8s-node"><div class="top"><svg class="ico" style="color:#178e6e"><use href="#i-monitor"/></svg><strong>Web</strong></div><small>web · osa-node4</small><div class="tag">VTON Studio / PostgreSQL</div></div>
+   <div class="k8s-node"><div class="top"><svg class="ico" style="color:#d08221"><use href="#i-gpu"/></svg><strong>GPU</strong></div><small>gpu · osa-node5</small><div class="tag">vton-api · FASHN VTON</div></div>
+   <div class="k8s-node last"><div class="top"><svg class="ico" style="color:#148963"><use href="#i-cpu"/></svg></div><div><strong>AI · Descriptor</strong><small>ai · osa-node4 · MobileNetV3-Small en CPU</small><div class="tag">garment-describer · ClusterIP · Cinder</div></div></div>
+  </div><div class="bridge-strip">MAGNUM + HEAT = puente entre OpenStack y Kubernetes</div></div>
+ </div>
+ <div class="panel orange gpu-pipeline"><div class="cap orange-c"><svg class="ico"><use href="#i-gpu"/></svg> Ruta de GPU en el clúster</div>
+  <div class="pipe-station"><svg class="ico"><use href="#i-gpu"/></svg>RTX 3060<br>bare metal</div><span class="arrow-h">→</span>
+  <div class="pipe-station"><svg class="ico"><use href="#i-lock"/></svg>IOMMU<br>vfio-pci</div><span class="arrow-h">→</span>
+  <div class="pipe-station"><svg class="ico"><use href="#i-monitor"/></svg>VM GPU<br>Nova</div><span class="arrow-h">→</span>
+  <div class="pipe-station"><svg class="ico"><use href="#i-cpu"/></svg>Driver NVIDIA<br>Container Toolkit</div><span class="arrow-h">→</span>
+  <div class="pipe-station"><svg class="ico"><use href="#i-puzzle"/></svg>Device plugin<br>nvidia.com/gpu</div><span class="arrow-h">→</span>
+  <div class="pipe-station"><svg class="ico"><use href="#i-box"/></svg>Pod vton-api<br>FASHN VTON</div>
+ </div>
+ <div class="footer"><span><strong>Idea central:</strong> OpenStack entrega VM, redes y GPU; Kubernetes administra las cargas dentro de esas VM.</span><span class="page">02 / 04</span></div>
+</section>
+<!-- ==================================================================== -->
+<!-- DIAGRAMA 03 · INFRAESTRUCTURA FÍSICA Y RED                         -->
+<!-- ==================================================================== -->
+<section class="slide" id="diagrama-3" aria-label="Topología física y de red">
+ <div class="slide-head"><div><h1>Topología física y de red del prototipo</h1><p>Equipos distribuidos tras NAT · Túnel WireGuard sobre Amazon EC2 · Redes OpenStack</p></div><div class="head-right"><div class="head-pill">Hub-and-spoke</div><div class="head-pill">5 sitios + PC admin</div></div></div>
+ <div class="topology-area">
+  <div class="topology-top">
+   <div class="panel purple infra-summary"><div class="cap purple-c"><svg class="ico"><use href="#i-server"/></svg> Infraestructura disponible</div><div class="numbers"><div><b>05</b><span>Nodos bare metal</span></div><div><b>03</b><span>Hipervisores</span></div><div><b>01</b><span>GPU RTX 3060</span></div></div><p style="font-size:15px;color:#627c98;margin-top:17px">Hardware propio distribuido en ubicaciones diferentes.</p></div>
+   <div class="panel aws-hub-big"><div class="aws-mark" aria-label="Amazon Web Services"><b>aws</b><svg viewBox="0 0 105 25"><path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"/></svg></div><div><h2>Amazon EC2</h2><p>Concentrador VPN + Caddy + DNS</p><span class="chip blue">Hub wg0 · 10.10.0.1</span><span class="chip" style="margin-left:5px">UDP 51820</span></div></div>
+   <div class="panel blue topology-access"><div class="cap blue-c"><svg class="ico"><use href="#i-user"/></svg> Administración y acceso</div><div class="links"><svg class="ico"><use href="#i-monitor"/></svg>PC admin · Peer VPN · 10.10.0.20</div><div class="links"><svg class="ico"><use href="#i-lock"/></svg>HTTPS público → Caddy → VTON Studio</div><div class="links"><svg class="ico"><use href="#i-net"/></svg>DNS privado: *.icc115.lan</div></div>
+  </div>
+  <!-- Conexiones vectoriales explícitas. Coordenadas relativas al lienzo local 1822 x 644. -->
+  <svg class="topology-wires" viewBox="0 0 1822 644" preserveAspectRatio="none" aria-label="Enlaces VPN WireGuard entre hub y nodos"><path d="M911 222 V270 H183 V306 M911 270 H547 V306 M911 270 H911 V306 M911 270 H1275 V306 M911 270 H1639 V306"/><circle cx="183" cy="306" r="7"/><circle cx="547" cy="306" r="7"/><circle cx="911" cy="306" r="7"/><circle cx="1275" cy="306" r="7"/><circle cx="1639" cy="306" r="7"/></svg>
+  <div class="node-row">
+   <div class="node-card"><svg class="ico huge"><use href="#i-server"/></svg><div class="ident">wg0 · 10.10.0.11</div><h3>osa-node1</h3><div class="role">compute1<br>Master + worker<br>aggregate k8s-standard</div><div class="bridges"><span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span><span>br-vlan</span></div></div>
+   <div class="node-card controller"><svg class="ico huge"><use href="#i-server"/></svg><div class="ident">wg0 · 10.10.0.12</div><h3>osa-node2</h3><div class="role">Controlador + deploy-node<br>OpenStack en LXC<br>Gateway NAT de ext-net</div><div class="bridges"><span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span><span>br-vlan</span></div></div>
+   <div class="node-card storage"><svg class="ico huge"><use href="#i-database"/></svg><div class="ident">wg0 · 10.10.0.13</div><h3>osa-node3</h3><div class="role">Cinder LVM / iSCSI<br>Prometheus + Grafana<br>Almacenamiento / métricas</div><div class="bridges"><span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span><span>br-vlan</span></div></div>
+   <div class="node-card"><svg class="ico huge"><use href="#i-server"/></svg><div class="ident">wg0 · 10.10.0.14</div><h3>osa-node4</h3><div class="role">compute2<br>VM web + VM ai<br>aggregates web / ai</div><div class="bridges"><span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span><span>br-vlan</span></div></div>
+   <div class="node-card gpu"><svg class="ico huge"><use href="#i-gpu"/></svg><div class="ident">wg0 · 10.10.0.15</div><h3>osa-node5</h3><div class="role">compute-gpu<br>VM acelerada por GPU<br>NVIDIA RTX 3060 12 GB</div><div class="bridges"><span>br-mgmt</span><span>br-vxlan</span><span>br-storage</span><span>br-vlan</span></div></div>
+  </div>
+  <div class="segment-row">
+   <div class="panel blue segment"><div class="cap blue-c"><svg class="ico"><use href="#i-shield"/></svg> WireGuard · transporte</div><code>10.10.0.0/24</code><p>VPN cifrada entre sitios, con EC2 como concentrador.</p></div>
+   <div class="panel purple segment"><div class="cap purple-c"><svg class="ico"><use href="#i-net"/></svg> Gestión OpenStack</div><code>172.29.x.0/24</code><p>Puentes br-mgmt, br-storage, br-vxlan y br-vlan.</p></div>
+   <div class="panel green segment"><div class="cap green-c"><svg class="ico"><use href="#i-layers"/></svg> private-net · VXLAN</div><code>192.168.100.0/24</code><p>Red de VM del clúster · MTU 1370 bytes.</p></div>
+   <div class="panel orange segment"><div class="cap orange-c"><svg class="ico"><use href="#i-globe"/></svg> ext-net · Internet</div><code>10.20.20.0/24</code><p>Gateway 10.20.20.1 / NAT en osa-node2.</p></div>
+  </div>
+ </div>
+ <div class="footer"><span>Los nodos se conectan al hub por <strong>WireGuard</strong>; los segmentos privados de OpenStack se transportan sobre la VPN.</span><span class="page">03 / 04</span></div>
+</section>
+<!-- ==================================================================== -->
+<!-- DIAGRAMA 04 · FLUJO DE APLICACIÓN + MONITOREO                       -->
+<!-- ==================================================================== -->
+<section class="slide" id="diagrama-4" aria-label="Flujo de aplicaciones y monitoreo">
+ <div class="slide-head"><div><h1>Flujo de aplicaciones, GPU y observabilidad</h1><p>Del navegador a VTON Studio · Inferencia GPU + descriptor CPU · Métricas centralizadas</p></div><div class="head-right"><div class="head-pill">FASHN VTON v1.5</div><div class="head-pill">MobileNetV3-Small</div></div></div>
+ <div class="workflow-area">
+  <div class="request-row">
+   <div class="request-card"><svg class="ico"><use href="#i-user"/></svg><h3>Usuario</h3><p>Foto de persona + prenda</p></div><div class="arrow-h">→</div>
+   <div class="request-card aws-req"><div class="aws-mark" style="width:78px"><b style="font-size:40px">aws</b><svg viewBox="0 0 105 25" style="width:74px;height:19px"><path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"/></svg></div><h3>EC2 · Caddy HTTPS</h3><p>vton-ues.duckdns.org · VPN</p></div><div class="arrow-h">→</div>
+   <div class="request-card"><svg class="ico"><use href="#i-monitor"/></svg><h3>VTON Studio · Django</h3><p>VM web · osa-node4 · puerto 30900</p></div><div class="arrow-h">→</div>
+   <div class="request-card db-req"><svg class="ico"><use href="#i-database"/></svg><h3>Cola PostgreSQL 16</h3><p>Trabajos · reserva atómica</p></div><div class="arrow-h">→</div>
+   <div class="request-card"><svg class="ico"><use href="#i-cpu"/></svg><h3>Worker de VTON</h3><p>Procesa en orden · API interna</p></div>
+  </div>
+  <div class="branch-heading"><span class="bar"></span>El worker ejecuta primero VTON y después consulta el descriptor<span class="bar"></span></div>
+  <div class="work-branches">
+   <div class="panel orange work-branch"><div class="branch-top"><div class="cap orange-c"><svg class="ico"><use href="#i-gpu"/></svg> Inferencia generativa · GPU</div><span class="chip orange">VM GPU · osa-node5 · NodePort 30800</span></div><div class="branch-pipe">
+     <div class="branch-tile"><svg class="ico"><use href="#i-lock"/></svg><strong>vton-api</strong><span>FastAPI · X-API-Key</span></div><span class="arrow-h">→</span>
+     <div class="branch-tile"><svg class="ico"><use href="#i-gpu"/></svg><strong>RTX 3060 12 GB</strong><span>PCI passthrough + device plugin</span></div><span class="arrow-h">→</span>
+     <div class="branch-tile"><svg class="ico"><use href="#i-image"/></svg><strong>FASHN VTON</strong><span>Imagen virtual PNG</span></div>
+   </div></div>
+   <div class="panel green work-branch"><div class="branch-top"><div class="cap green-c"><svg class="ico"><use href="#i-cpu"/></svg> Descriptor de prenda · CPU</div><span class="chip green">VM ai · osa-node4 · ClusterIP 8080</span></div><div class="branch-pipe">
+     <div class="branch-tile"><svg class="ico"><use href="#i-image"/></svg><strong>Foto de prenda</strong><span>Imagen original subida</span></div><span class="arrow-h">→</span>
+     <div class="branch-tile"><svg class="ico"><use href="#i-cpu"/></svg><strong>MobileNetV3</strong><span>garment-describer · CPU</span></div><span class="arrow-h">→</span>
+     <div class="branch-tile"><svg class="ico"><use href="#i-code"/></svg><strong>JSON</strong><span>Tipo · color · estilo</span></div>
+   </div></div>
+  </div>
+  <div class="result-row">
+   <div class="panel teal result-card"><svg class="ico"><use href="#i-image"/></svg><div><h3>Resultado 1 · Imagen generada</h3><p>VTON devuelve una imagen de prueba virtual de prendas.</p></div><span class="chip">PNG · 576 × 864</span></div>
+   <div class="panel teal result-card"><svg class="ico"><use href="#i-check"/></svg><div><h3>Resultado 2 · Descripción de la prenda</h3><p>El descriptor en CPU complementa la imagen; su fallo no detiene el trabajo.</p></div><span class="chip">Estimación</span></div>
+  </div>
+  <div class="final-row">
+   <div class="panel green end-panel"><div class="cap green-c"><svg class="ico"><use href="#i-chart"/></svg> Observabilidad · Prometheus + Grafana en osa-node3</div><div class="flow-chips"><span class="chip green">5 hosts · node_exporter</span><span class="chip green">5 VM · node_exporter</span><span class="chip green">OpenStack · exporter</span><span class="chip green">Kubernetes · kube-state-metrics</span><span class="chip green">GPU · DCGM</span></div><p>Observa cada capa sin depender de los servicios de la nube.</p></div>
+   <div class="panel purple end-panel"><div class="cap purple-c"><svg class="ico"><use href="#i-disk"/></svg> Ciclo de vida de los pesos de MobileNetV3</div><div class="flow-chips"><span class="chip purple">Entrenamiento fuera de la nube</span><span class="arrow-h" style="font-size:19px">→</span><span class="chip purple">Checkpoint best.pt</span><span class="arrow-h" style="font-size:19px">→</span><span class="chip purple">Volumen Cinder (osa-node3)</span><span class="arrow-h" style="font-size:19px">→</span><span class="chip purple">Pod AI (osa-node4)</span></div><p>El pod carga los pesos desde Cinder por iSCSI; el entrenamiento se hace fuera del clúster.</p></div>
+  </div>
+ </div>
+ <div class="footer"><span><strong>Flujo principal:</strong> web → cola → worker → VTON (GPU) → descriptor (CPU) → resultados para el usuario.</span><span class="page">04 / 04</span></div>
+</section>
+</div></main>
+<script>
+// Navegación y escalado automático a una pantalla 16:9 (1920 x 1080).
+// El tamaño real de diseño siempre es 1920 x 1080; solo cambia la escala visual.
+(function(){
+const slides=[...document.querySelectorAll('.slide')],tabs=[...document.querySelectorAll('.tab')];
+const deck=document.getElementById('deck'),screen=document.getElementById('screen');let active=0;
+function resize(){const w=screen.clientWidth-16,h=screen.clientHeight-16;const scale=Math.max(.1,Math.min(w/1920,h/1080));deck.style.transform=`scale(${scale})`;deck.style.marginLeft=deck.style.marginRight=((-1920*(1-scale))/2)+'px';deck.style.marginTop=deck.style.marginBottom=((-1080*(1-scale))/2)+'px';}
+function show(n){active=(n+slides.length)%slides.length;slides.forEach((s,i)=>s.classList.toggle('active',i===active));tabs.forEach((t,i)=>{t.classList.toggle('active',i===active);t.setAttribute('aria-current',String(i===active));});history.replaceState(null,'','#diagrama-'+(active+1));}
+tabs.forEach(t=>t.addEventListener('click',()=>show(Number(t.dataset.page))));document.getElementById('prev').addEventListener('click',()=>show(active-1));document.getElementById('next').addEventListener('click',()=>show(active+1));
+document.getElementById('full').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.();});
+document.getElementById('print').addEventListener('click',()=>window.print());
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea,[contenteditable]'))return;if(e.key==='ArrowRight'||e.key==='PageDown'){show(active+1)}if(e.key==='ArrowLeft'||e.key==='PageUp'){show(active-1)}if(e.key.toLowerCase()==='f')document.getElementById('full').click();if(e.key.toLowerCase()==='p'&&!e.ctrlKey&&!e.metaKey)window.print();if(/^[1-4]$/.test(e.key))show(Number(e.key)-1)});
+window.addEventListener('resize',resize);document.addEventListener('fullscreenchange',resize);const hash=window.location.hash.match(/diagrama-(\d)/);if(hash)show(Math.min(3,Math.max(0,Number(hash[1])-1)));resize();
+})();
+</script>
+</body>
+</html>
