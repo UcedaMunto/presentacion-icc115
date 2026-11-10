@@ -321,7 +321,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
                 <div class="section-kicker">Pregunta de investigación</div>
                 <p class="big-copy">
                   ¿En qué medida es técnicamente viable una nube privada OpenStack con nodos
-                  distribuidos, unidos por WireGuard, que ejecute un servicio de prueba virtual de
+                  geograficamente distribuido, unidos por WireGuard, que ejecute un servicio de prueba virtual de
                   prendas?
                 </p>
               </div>
@@ -601,7 +601,141 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
       <section aria-label="Diapositiva 10" class="slide" data-title="PaaS: Kubernetes con Magnum y la GPU en un pod" id="slide-10"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>PaaS: Kubernetes con Magnum y la GPU en un pod</h1><div class="folio">10 / 30</div></header><div class="body"><div class="fig-stack"><div class="panel figure-panel"><img alt="Topología del clúster Kubernetes: cinco VM sobre tres hipervisores" class="diagram zoomable" loading="eager" src="assets/images/topo-07-topologia-cluster-k8s.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="info-row"><article class="info-card info-blue"><div class="info-head"><div class="icon-bkg blue"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-08.png"/></div><strong>Clúster k8s-vton</strong></div><p>CREATE_COMPLETE y HEALTHY: 5 VM, con Master y Worker separados y cuatro nodegroups.</p></article><article class="info-card info-orange"><div class="info-head"><div class="icon-bkg orange"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-16.png"/></div><strong>GPU por PCI passthrough</strong></div><p>La RTX 3060 se entrega completa a una VM y desde allí a un pod con el device plugin de NVIDIA.</p></article><article class="info-card info-green"><div class="info-head"><div class="icon-bkg green"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-13.png"/></div><strong>Ubicación controlada</strong></div><p>Nova coloca cada VM en el equipo previsto con host aggregates (k8s-standard, k8s-web, k8s-ai y la GPU).</p></article></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>10 / 30</small></footer><template class="speaker-notes">Magnum crea el clúster k8s-vton con cinco VM: Master y Worker en osa-node1, la VM de GPU en osa-node5 y las VM web y ai en osa-node4. Los host aggregates de Nova deciden en qué equipo se crea cada VM. La siguiente lámina detalla cómo llega la GPU hasta el pod.</template></section>
       <section aria-label="Diapositiva 11" class="slide" data-title="Ruta de la GPU: de la tarjeta física al pod" id="slide-11"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>Ruta de la GPU: de la tarjeta física al pod</h1><div class="folio">11 / 30</div></header><div class="body"><div class="fig-stack"><div class="panel figure-panel"><img alt="Ruta de la GPU en diez pasos, desde IOMMU hasta el pod vton-api" class="diagram zoomable" loading="eager" src="assets/images/topo-08-ruta-gpu.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="info-row"><article class="info-card info-orange"><div class="info-head"><div class="icon-bkg orange"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-16.png"/></div><strong>Del host a la VM</strong></div><p>IOMMU y vfio-pci reservan la RTX 3060 en osa-node5; Nova la ofrece con el alias rtx3060 y el flavor k8s-gpu la entrega completa a la VM.</p></article><article class="info-card info-blue"><div class="info-head"><div class="icon-bkg blue"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-08.png"/></div><strong>De la VM al pod</strong></div><p>Controlador NVIDIA, Container Toolkit y device plugin anuncian nvidia.com/gpu y el pod vton-api la pide con límite de 1.</p></article><article class="info-card info-green"><div class="info-head"><div class="icon-bkg green"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-06.png"/></div><strong>Se mide aparte</strong></div><p>Mientras la VM posee la tarjeta, OpenStack no ve su uso: se mide con dcgm-exporter dentro de la VM.</p></article></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>11 / 30</small></footer><template class="speaker-notes">La figura se lee de izquierda a derecha y de arriba abajo, paso por paso. Primero el equipo físico: IOMMU agrupa la tarjeta con su audio y vfio-pci la reserva. Luego Nova, con la lista de dispositivos y el alias rtx3060, y el flavor k8s-gpu que la pide al crear la VM. Dentro de la VM se carga el controlador NVIDIA, y después Kubernetes anuncia la GPU y el pod vton-api la usa. Si tras reiniciar el host la VM no ve la GPU, lo primero es revisar vfio-pci en osa-node5.</template></section>
       <section aria-label="Diapositiva 12" class="slide" data-title="SaaS: prueba virtual de prendas con una cola de solicitudes" id="slide-12"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>SaaS: prueba virtual de prendas con una cola de solicitudes</h1><div class="folio">12 / 30</div></header><div class="body"><div class="fig-stack"><div class="panel figure-panel"><img alt="Flujo del caso de estudio en siete pasos" class="diagram zoomable" loading="eager" src="assets/images/topo-11-flujo-caso-estudio.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="info-row"><article class="info-card info-blue"><div class="info-head"><div class="icon-bkg blue"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-18.png"/></div><strong>Una sola inferencia a la vez</strong></div><p>La GPU atiende un trabajo; los demás esperan en la cola de PostgreSQL.</p></article><article class="info-card info-orange"><div class="info-head"><div class="icon-bkg orange"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-19.png"/></div><strong>Límites por usuario</strong></div><p>Máximo 3 solicitudes activas por persona; la API exige clave.</p></article><article class="info-card info-green"><div class="info-head"><div class="icon-bkg green"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-20.png"/></div><strong>Descriptor de prendas</strong></div><p>El worker consulta al descriptor y la imagen se entrega igual si este falla.</p></article></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>12 / 30</small></footer><template class="speaker-notes">El flujo se lee por los pasos numerados: el navegador sube la foto, VTON Studio valida y guarda el trabajo en PostgreSQL, el worker lo toma, llama a vton-api en la VM GPU, consulta al descriptor en la VM ai y la imagen resultante vuelve al navegador.</template></section>
+      
+
       <section
+        aria-label="Diapositiva 16"
+        class="slide"
+        data-title="Descriptor de prendas: MobileNetV3-Small en CPU"
+        id="slide-16"
+      >
+        <header class="header">
+          <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
+          <h1>Descriptor de prendas: MobileNetV3-Small en CPU</h1>
+          <div class="folio">16 / 30</div>
+        </header>
+        <div class="body">
+          <div class="diagram-layout mobile-layout">
+            <div class="panel figure-panel">
+              <img
+                alt="Ciclo de vida de los pesos del descriptor"
+                class="diagram zoomable"
+                loading="eager"
+                src="assets/images/topo-12-ciclo-pesos.png"
+              />
+              <div class="figure-caption">Haz clic en la figura para ampliarla</div>
+            </div>
+            <div class="mobilenet-side">
+              <article class="result-hero">
+                <strong>77,5 %</strong>
+                <p>
+                  promedio macro de tipo, color y estilo sobre el conjunto de prueba de 1 424
+                  imágenes (criterio R11: ≥ 70 %)
+                </p>
+              </article>
+              <div class="panel note-panel">
+                <ul class="line-list">
+                  <li>Entrenado fuera de la nube; solo la inferencia corre en el clúster.</li>
+                  <li>
+                    Los pesos se cargan desde un volumen de Cinder, sin reconstruir la imagen.
+                  </li>
+                  <li>
+                    En una prueba funcional con 18 fotos reales: 75,0 % en tipo y 81,2 % en color.
+                  </li>
+                </ul>
+              </div>
+              <p class="tiny-callout">
+                El entrenamiento se hizo en un equipo aparte; la nube solo despliega el resultado.
+              </p>
+            </div>
+          </div>
+        </div>
+        <footer class="bottom">
+          <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>16 / 30</small>
+        </footer>
+        <template class="speaker-notes"></template>
+      </section>
+      <section aria-label="Diapositiva 17" class="slide" data-title="Monitoreo: Prometheus y Grafana fuera de OpenStack y Kubernetes" id="slide-17"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>Monitoreo: Prometheus y Grafana fuera de OpenStack y Kubernetes</h1><div class="folio">17 / 30</div></header><div class="body"><div class="diagram-layout diagram-wide2"><div class="panel figure-panel"><img alt="Topología del monitoreo: Prometheus consulta exportadores por wg0 y Grafana los muestra" class="diagram zoomable" loading="eager" src="assets/images/topo-09-topologia-monitoreo.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="info-stack"><article class="info-card info-blue"><div class="info-head"><div class="icon-bkg blue"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-06.png"/></div><strong>14 objetivos</strong></div><p>5 equipos y 5 VM con node_exporter, más dcgm-exporter (GPU), kube-state-metrics, openstack-exporter y el propio Prometheus.</p></article><article class="info-card info-orange"><div class="info-head"><div class="icon-bkg orange"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-13.png"/></div><strong>Corre en osa-node3</strong></div><p>Prometheus consulta por wg0 con retención de 15 días; Grafana muestra 3 tableros: infraestructura, GPU y resumen.</p></article><article class="info-card info-green"><div class="info-head"><div class="icon-bkg green"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-02.png"/></div><strong>Sin Telemetry</strong></div><p>Se descartó Telemetry de OpenStack: con passthrough no ve la GPU y obligaba a modificar Nova, RabbitMQ y Galera.</p></article></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>17 / 30</small></footer><template class="speaker-notes">El monitoreo vive en osa-node3, fuera de OpenStack y de Kubernetes, para que siga funcionando si alguno falla. Prometheus consulta cada objetivo, scrape, por la red WireGuard: node_exporter en los cinco equipos y las cinco VM, dcgm-exporter para la GPU, kube-state-metrics y el exportador de OpenStack. Grafana tiene tres tableros y se accede por túnel SSH o por grafana.icc115.lan desde la VPN.</template></section>
+      <section
+        aria-label="Diapositiva 18"
+        class="slide"
+        data-title="Acceso y publicación: una ruta pública y una privada"
+        id="slide-18"
+      >
+        <header class="header">
+          <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
+          <h1>Acceso y publicación: una ruta pública y una privada</h1>
+          <div class="folio">18 / 30</div>
+        </header>
+        <div class="body">
+          <div class="diagram-layout">
+            <div class="panel figure-panel">
+              <img
+                alt="Acceso y publicación: ruta pública y ruta privada"
+                class="diagram zoomable"
+                loading="eager"
+                src="assets/images/topo-10-acceso-publicacion.png"
+              />
+              <div class="figure-caption">Haz clic en la figura para ampliarla</div>
+            </div>
+            <div class="info-stack">
+              <article class="info-card info-green">
+                <div class="info-head">
+                  <div class="icon-bkg green">
+                    <img
+                      alt="Icono del PowerPoint"
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-19.png"
+                    />
+                  </div>
+                  <strong>HTTPS público</strong>
+                </div>
+                <p>
+                  Solo VTON Studio sale a Internet, con certificado de Let's Encrypt que se renueva
+                  solo.
+                </p>
+              </article>
+              <article class="info-card info-blue">
+                <div class="info-head">
+                  <div class="icon-bkg blue">
+                    <img
+                      alt="Icono del PowerPoint"
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-30.png"
+                    />
+                  </div>
+                  <strong>Nombres internos</strong>
+                </div>
+                <p>Zona icc115.lan en el hub; Grafana y Horizon solo se alcanzan por la VPN.</p>
+              </article>
+              <article class="info-card info-purple">
+                <div class="info-head">
+                  <div class="icon-bkg purple">
+                    <img
+                      alt="Icono del PowerPoint"
+                      class="mini-icon"
+                      loading="eager"
+                      src="assets/images/figure-06.png"
+                    />
+                  </div>
+                  <strong>Solo tres puertos abiertos</strong>
+                </div>
+                <p>El hub abre UDP 51820 (WireGuard) y TCP 80 y 443; el resto queda cerrado.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+        <footer class="bottom">
+          <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
+          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>18 / 30</small>
+        </footer>
+        <template class="speaker-notes"></template>
+      </section>
+      
+            <section
         aria-label="Diapositiva 13"
         class="slide"
         data-title="Funcionamiento de una red convolucional"
@@ -628,6 +762,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         </footer>
         <template class="speaker-notes"></template>
       </section>
+
       <section
         aria-label="Diapositiva 14"
         class="slide annex-slide"
@@ -758,6 +893,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
           <small>Fuente: informe final · §§ 3.2.5 y 5.5</small>
         </div>
       </section>
+
       <section
         aria-label="Diapositiva 15"
         class="slide annex-slide"
@@ -963,137 +1099,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
           <div><b>Inferencia:</b> 43,6 ms de media en servidor (E6).</div>
         </div>
       </section>
-      <section
-        aria-label="Diapositiva 16"
-        class="slide"
-        data-title="Descriptor de prendas: MobileNetV3-Small en CPU"
-        id="slide-16"
-      >
-        <header class="header">
-          <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
-          <h1>Descriptor de prendas: MobileNetV3-Small en CPU</h1>
-          <div class="folio">16 / 30</div>
-        </header>
-        <div class="body">
-          <div class="diagram-layout mobile-layout">
-            <div class="panel figure-panel">
-              <img
-                alt="Ciclo de vida de los pesos del descriptor"
-                class="diagram zoomable"
-                loading="eager"
-                src="assets/images/topo-12-ciclo-pesos.png"
-              />
-              <div class="figure-caption">Haz clic en la figura para ampliarla</div>
-            </div>
-            <div class="mobilenet-side">
-              <article class="result-hero">
-                <strong>77,5 %</strong>
-                <p>
-                  promedio macro de tipo, color y estilo sobre el conjunto de prueba de 1 424
-                  imágenes (criterio R11: ≥ 70 %)
-                </p>
-              </article>
-              <div class="panel note-panel">
-                <ul class="line-list">
-                  <li>Entrenado fuera de la nube; solo la inferencia corre en el clúster.</li>
-                  <li>
-                    Los pesos se cargan desde un volumen de Cinder, sin reconstruir la imagen.
-                  </li>
-                  <li>
-                    En una prueba funcional con 18 fotos reales: 75,0 % en tipo y 81,2 % en color.
-                  </li>
-                </ul>
-              </div>
-              <p class="tiny-callout">
-                El entrenamiento se hizo en un equipo aparte; la nube solo despliega el resultado.
-              </p>
-            </div>
-          </div>
-        </div>
-        <footer class="bottom">
-          <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>16 / 30</small>
-        </footer>
-        <template class="speaker-notes"></template>
-      </section>
-      <section aria-label="Diapositiva 17" class="slide" data-title="Monitoreo: Prometheus y Grafana fuera de OpenStack y Kubernetes" id="slide-17"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>Monitoreo: Prometheus y Grafana fuera de OpenStack y Kubernetes</h1><div class="folio">17 / 30</div></header><div class="body"><div class="diagram-layout diagram-wide2"><div class="panel figure-panel"><img alt="Topología del monitoreo: Prometheus consulta exportadores por wg0 y Grafana los muestra" class="diagram zoomable" loading="eager" src="assets/images/topo-09-topologia-monitoreo.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="info-stack"><article class="info-card info-blue"><div class="info-head"><div class="icon-bkg blue"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-06.png"/></div><strong>14 objetivos</strong></div><p>5 equipos y 5 VM con node_exporter, más dcgm-exporter (GPU), kube-state-metrics, openstack-exporter y el propio Prometheus.</p></article><article class="info-card info-orange"><div class="info-head"><div class="icon-bkg orange"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-13.png"/></div><strong>Corre en osa-node3</strong></div><p>Prometheus consulta por wg0 con retención de 15 días; Grafana muestra 3 tableros: infraestructura, GPU y resumen.</p></article><article class="info-card info-green"><div class="info-head"><div class="icon-bkg green"><img alt="" class="mini-icon" loading="eager" src="assets/images/figure-02.png"/></div><strong>Sin Telemetry</strong></div><p>Se descartó Telemetry de OpenStack: con passthrough no ve la GPU y obligaba a modificar Nova, RabbitMQ y Galera.</p></article></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>17 / 30</small></footer><template class="speaker-notes">El monitoreo vive en osa-node3, fuera de OpenStack y de Kubernetes, para que siga funcionando si alguno falla. Prometheus consulta cada objetivo, scrape, por la red WireGuard: node_exporter en los cinco equipos y las cinco VM, dcgm-exporter para la GPU, kube-state-metrics y el exportador de OpenStack. Grafana tiene tres tableros y se accede por túnel SSH o por grafana.icc115.lan desde la VPN.</template></section>
-      <section
-        aria-label="Diapositiva 18"
-        class="slide"
-        data-title="Acceso y publicación: una ruta pública y una privada"
-        id="slide-18"
-      >
-        <header class="header">
-          <div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div>
-          <h1>Acceso y publicación: una ruta pública y una privada</h1>
-          <div class="folio">18 / 30</div>
-        </header>
-        <div class="body">
-          <div class="diagram-layout">
-            <div class="panel figure-panel">
-              <img
-                alt="Acceso y publicación: ruta pública y ruta privada"
-                class="diagram zoomable"
-                loading="eager"
-                src="assets/images/topo-10-acceso-publicacion.png"
-              />
-              <div class="figure-caption">Haz clic en la figura para ampliarla</div>
-            </div>
-            <div class="info-stack">
-              <article class="info-card info-green">
-                <div class="info-head">
-                  <div class="icon-bkg green">
-                    <img
-                      alt="Icono del PowerPoint"
-                      class="mini-icon"
-                      loading="eager"
-                      src="assets/images/figure-19.png"
-                    />
-                  </div>
-                  <strong>HTTPS público</strong>
-                </div>
-                <p>
-                  Solo VTON Studio sale a Internet, con certificado de Let's Encrypt que se renueva
-                  solo.
-                </p>
-              </article>
-              <article class="info-card info-blue">
-                <div class="info-head">
-                  <div class="icon-bkg blue">
-                    <img
-                      alt="Icono del PowerPoint"
-                      class="mini-icon"
-                      loading="eager"
-                      src="assets/images/figure-30.png"
-                    />
-                  </div>
-                  <strong>Nombres internos</strong>
-                </div>
-                <p>Zona icc115.lan en el hub; Grafana y Horizon solo se alcanzan por la VPN.</p>
-              </article>
-              <article class="info-card info-purple">
-                <div class="info-head">
-                  <div class="icon-bkg purple">
-                    <img
-                      alt="Icono del PowerPoint"
-                      class="mini-icon"
-                      loading="eager"
-                      src="assets/images/figure-06.png"
-                    />
-                  </div>
-                  <strong>Solo tres puertos abiertos</strong>
-                </div>
-                <p>El hub abre UDP 51820 (WireGuard) y TCP 80 y 443; el resto queda cerrado.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-        <footer class="bottom">
-          <b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b
-          ><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>18 / 30</small>
-        </footer>
-        <template class="speaker-notes"></template>
-      </section>
+      
       <section
         aria-label="Diapositiva 19"
         class="slide"
@@ -2085,7 +2091,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
               <div class="layer-heading annex2-inline-10">
                 <div class="cap purple-c">
                   <svg class="ico"><use href="#i-server"></use></svg> Capa física · Bare metal
-                  distribuido
+                  geograficamente distribuido
                 </div>
                 <span class="chip">5 equipos en sitios diferentes · 3 hipervisores Nova</span>
               </div>
@@ -2322,7 +2328,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             <div>
               <h1>Topología física y de red del prototipo</h1>
               <p>
-                Equipos distribuidos tras NAT · Túnel WireGuard sobre Amazon EC2 · Redes OpenStack
+                Equipos geográficamente distribuidos tras NAT · Túnel WireGuard sobre Amazon EC2 · Redes OpenStack
               </p>
             </div>
             <div class="head-right">
