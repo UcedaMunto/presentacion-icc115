@@ -3,6 +3,7 @@ const stage = document.getElementById('stage');
 const current = document.getElementById('slideNumber');
 const slideTabs = Array.from(document.querySelectorAll('.toolbar .tab'));
 let slideIndex = 0;
+const firstAnnex = Math.min(...slideTabs.map((t) => Number(t.dataset.slide)).filter((n) => n > 0));
 const notesBox = document.getElementById('notes');
 const notesText = document.getElementById('notesText');
 const imageOverlay = document.getElementById('imageOverlay');
@@ -67,7 +68,7 @@ function showSlide(n) {
   current.textContent = `${slideIndex + 1} / ${deck.length}`;
   slideTabs.forEach((tab) => {
     const target = Number(tab.dataset.slide);
-    const active = target === 0 ? slideIndex < 24 : slideIndex === target;
+    const active = target === 0 ? slideIndex < firstAnnex : slideIndex === target;
     tab.classList.toggle('active', active);
     if (active) tab.setAttribute('aria-current', 'page');
     else tab.removeAttribute('aria-current');

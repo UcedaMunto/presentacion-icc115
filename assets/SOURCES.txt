@@ -43,3 +43,5 @@ The five physical host roles, WireGuard addresses, private-net and ext-net,
 Magnum/Heat, GPU passthrough, VTON output and application ports match the report.
 Descriptor weights are attached to the AI VM from Cinder via iSCSI, then exposed
 to the pod through hostPath; this is not a direct pod CSI mount.
+
+Diagramas de topología corregidos (noviembre de 2026): images/topo-02 … topo-12 (PNG) y diagramas-drawio/ (fuentes editables .drawio).
