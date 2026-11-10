@@ -149,10 +149,9 @@
       </div>
       <nav aria-label="Presentación y diagramas anexos" class="tabs">
         <button class="tab" data-slide="0" type="button">Presentación</button>
-        <button class="tab active" data-slide="26" type="button">01 · Arquitectura general</button>
-        <button class="tab" data-slide="27" type="button">02 · OpenStack ↔ Kubernetes</button>
-        <button class="tab" data-slide="28" type="button">03 · Red y nodos físicos</button>
-        <button class="tab" data-slide="29" type="button">04 · Aplicaciones y monitoreo</button>
+        <button class="tab" data-slide="26" type="button">01 · OpenStack ↔ Kubernetes</button>
+        <button class="tab" data-slide="27" type="button">02 · Red y nodos físicos</button>
+        <button class="tab" data-slide="28" type="button">03 · Aplicaciones y monitoreo</button>
       </nav>
       <div class="actions">
         <button class="toolbtn" id="btnPrevious" title="Flecha izquierda" type="button">◀</button
@@ -1870,262 +1869,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
         <template class="speaker-notes"></template>
       </section>
       <section aria-label="Diapositiva 26" class="slide" data-title="Respaldo: capas de red IP del prototipo" id="slide-26"><header class="header"><div class="eyebrow"><span class="spot"></span>03 · DISEÑO Y DESARROLLO</div><h1>Respaldo: capas de red IP del prototipo</h1><div class="folio">26 / 30</div></header><div class="body"><div class="diagram-layout backup-layout"><div class="panel figure-panel"><img alt="Capas IP: Internet, WireGuard y bridges de OpenStack" class="diagram zoomable" loading="eager" src="assets/images/topo-04-capas-ip.png"/><div class="figure-caption">Haz clic en la figura para ampliarla</div></div><div class="panel backup-text"><div class="section-kicker">ANEXO TÉCNICO</div><p class="big-copy">Cada nodo usa tres capas de direccionamiento: Internet (salida de casa y IP elástica del hub), WireGuard 10.10.0.x entre sitios y los puentes de OpenStack 172.29.x.x (br-mgmt, br-vxlan, br-storage y br-vlan).</p></div></div></div><footer class="bottom"><b>Universidad de El Salvador · ICC115 Infraestructura Cloud</b><span>RESUMEN TÉCNICO · NUBE PRIVADA</span><small>26 / 30</small></footer><template class="speaker-notes">Respaldo. Muestra las tres capas de direccionamiento en osa-node3: la capa 1, Internet y la IP elástica; la capa 2, WireGuard 10.10.0.x; y la capa 3, los puentes de OpenStack 172.29.x.x. El endpoint de cada nodo es la IP elástica del hub, puerto UDP 51820.</template></section>
-      <section
-        aria-label="Diapositiva 27"
-        class="slide annex2-slide"
-        data-title="Arquitectura general · OpenStack + Kubernetes"
-        id="slide-27"
-      >
-        <section aria-label="Arquitectura general" class="annex2-content">
-          <div class="slide-head">
-            <div>
-              <h1>Arquitectura general · OpenStack + Kubernetes</h1>
-              <p>Nube privada distribuida · Desde los equipos físicos hasta los servicios de IA</p>
-            </div>
-            <div class="head-right">
-              <div class="head-pill">5 servidores físicos</div>
-              <div class="head-pill">4 nodegroups · 5 VM</div>
-            </div>
-          </div>
-          <div class="overview-grid">
-            <div class="panel blue access annex2-inline-03">
-              <div class="cap">
-                <svg class="ico"><use href="#i-user"></use></svg> Acceso de usuarios
-              </div>
-              <div class="person">
-                <svg class="ico"><use href="#i-monitor"></use></svg>
-                <div><strong>VTON Studio</strong><span>Navegador · HTTPS público</span></div>
-              </div>
-            </div>
-            <div class="panel blue overview-app">
-              <div class="layer-heading">
-                <div class="cap blue-c">
-                  <svg class="ico"><use href="#i-layers"></use></svg> SaaS · Aplicaciones del caso
-                  de estudio
-                </div>
-                <span class="chip blue">Desplegadas sobre Kubernetes</span>
-              </div>
-              <div class="application-row">
-                <div class="app-tile">
-                  <svg class="ico"><use href="#i-monitor"></use></svg>
-                  <div>
-                    <strong>VTON Studio</strong><small>Django · web · worker · PostgreSQL</small>
-                  </div>
-                </div>
-                <div class="arrow-h">→</div>
-                <div class="app-tile">
-                  <svg class="ico annex2-inline-04"><use href="#i-gpu"></use></svg>
-                  <div><strong>vton-api</strong><small>FASHN VTON v1.5 · GPU</small></div>
-                </div>
-                <div class="arrow-h">+</div>
-                <div class="app-tile">
-                  <svg class="ico annex2-inline-05"><use href="#i-cpu"></use></svg>
-                  <div>
-                    <strong>garment-describer</strong><small>MobileNetV3-Small · CPU</small>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="panel blue overview-paas">
-              <div class="layer-heading">
-                <div class="cap blue-c">
-                  <svg class="ico"><use href="#i-k8s"></use></svg> PaaS · Kubernetes
-                  <strong class="annex2-inline-06">k8s-vton</strong>
-                </div>
-                <span class="chip blue">Magnum · 4 nodegroups / 5 VM · Fedora CoreOS 38</span>
-              </div>
-              <div class="vm-list">
-                <div class="vm purple-v">
-                  <div class="vm-head">
-                    <svg class="ico"><use href="#i-server"></use></svg><strong>Master</strong>
-                  </div>
-                  <div class="host">osa-node1</div>
-                  <div class="desc">Plano de control</div>
-                </div>
-                <div class="vm">
-                  <div class="vm-head">
-                    <svg class="ico"><use href="#i-server"></use></svg><strong>Worker</strong>
-                  </div>
-                  <div class="host">osa-node1</div>
-                  <div class="desc">Carga general</div>
-                </div>
-                <div class="vm green-v">
-                  <div class="vm-head">
-                    <svg class="ico"><use href="#i-monitor"></use></svg><strong>Web</strong>
-                  </div>
-                  <div class="host">osa-node4</div>
-                  <div class="desc">VTON Studio</div>
-                </div>
-                <div class="vm orange-v">
-                  <div class="vm-head">
-                    <svg class="ico"><use href="#i-gpu"></use></svg><strong>GPU</strong>
-                  </div>
-                  <div class="host">osa-node5</div>
-                  <div class="desc">RTX 3060 / vton-api</div>
-                </div>
-                <div class="vm red-v">
-                  <div class="vm-head">
-                    <svg class="ico"><use href="#i-cpu"></use></svg><strong>AI</strong>
-                  </div>
-                  <div class="host">osa-node4</div>
-                  <div class="desc">Descriptor en CPU</div>
-                </div>
-              </div>
-            </div>
-            <div class="panel red overview-iaas">
-              <div class="layer-heading">
-                <div class="cap red-c">
-                  <svg class="ico"><use href="#i-cloud"></use></svg> IaaS · OpenStack-Ansible 33.0.1
-                </div>
-                <span class="chip red">Servicios LXC · Controlador osa-node2</span>
-              </div>
-              <div class="openstack-services">
-                <div class="service">
-                  <svg class="ico"><use href="#i-key"></use></svg><strong>Keystone</strong
-                  ><span>Identidad</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-cube"></use></svg><strong>Nova</strong
-                  ><span>Cómputo</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-chart"></use></svg><strong>Placement</strong
-                  ><span>Inventario</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-net"></use></svg><strong>Neutron</strong
-                  ><span>OVS · Red</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-image"></use></svg><strong>Glance</strong
-                  ><span>Imágenes</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-database"></use></svg><strong>Cinder</strong
-                  ><span>LVM / iSCSI</span>
-                </div>
-                <div class="service">
-                  <svg class="ico"><use href="#i-fire"></use></svg><strong>Heat</strong
-                  ><span>Orquestación</span>
-                </div>
-                <div class="service annex2-inline-07">
-                  <svg class="ico annex2-inline-08"><use href="#i-k8s"></use></svg
-                  ><strong>Magnum</strong><span>Clústeres K8s</span>
-                </div>
-              </div>
-              <div class="basebar">
-                <span>Horizon / APIs</span><span>◆</span><span>HAProxy</span><span>◆</span
-                ><span>Galera</span><span>◆</span><span>RabbitMQ</span><span>◆</span
-                ><span>memcached</span>
-              </div>
-            </div>
-            <div class="panel blue overview-network">
-              <div class="net-row">
-                <div class="cap blue-c">
-                  <svg class="ico"><use href="#i-shield"></use></svg> Red distribuida · WireGuard
-                  VPN
-                </div>
-                <span class="chip">Hub-and-spoke cifrado · 10.10.0.0/24</span>
-              </div>
-              <div class="nets">
-                <span class="chip blue">br-mgmt · Gestión</span
-                ><span class="chip purple">private-net · VXLAN</span
-                ><span class="chip orange">ext-net · NAT</span
-                ><span class="chip">br-storage · iSCSI</span>
-              </div>
-            </div>
-            <div class="panel blue overview-label">
-              <svg class="ico"><use href="#i-terminal"></use></svg>
-              <div>
-                <strong>Acceso administrativo</strong
-                ><span>Horizon · CLI · kubectl · DNS interno</span>
-              </div>
-            </div>
-            <div class="panel green overview-monitor">
-              <div class="cap green-c">
-                <svg class="ico"><use href="#i-chart"></use></svg> Monitoreo transversal
-              </div>
-              <div class="mini annex2-inline-09">
-                Fuera de OpenStack y Kubernetes · <strong>osa-node3</strong>
-              </div>
-              <div class="monitor-brands">
-                <div class="monitor-brand">
-                  <svg class="ico prom"><use href="#i-fire"></use></svg>Prometheus
-                </div>
-                <div class="monitor-brand">
-                  <svg class="ico graf"><use href="#i-chart"></use></svg>Grafana
-                </div>
-              </div>
-              <div class="metric-list">
-                <div class="metric">
-                  <svg class="ico"><use href="#i-server"></use></svg>
-                  <div>node_exporter<small>Cómputo, memoria, disco y redes</small></div>
-                </div>
-                <div class="metric">
-                  <svg class="ico"><use href="#i-cloud"></use></svg>
-                  <div>openstack-exporter<small>Recursos de la nube / Placement</small></div>
-                </div>
-                <div class="metric">
-                  <svg class="ico"><use href="#i-k8s"></use></svg>
-                  <div>kube-state-metrics<small>Estado del clúster y pods</small></div>
-                </div>
-                <div class="metric">
-                  <svg class="ico"><use href="#i-gpu"></use></svg>
-                  <div>dcgm-exporter<small>GPU · VRAM · temperatura</small></div>
-                </div>
-              </div>
-              <div class="monitor-note">
-                Recolecta métricas de <strong>5 hosts + 5 VM + OpenStack + K8s + GPU</strong>.
-              </div>
-            </div>
-            <div class="panel orange overview-hub">
-              <div aria-label="Amazon AWS" class="aws-mark">
-                <b>aws</b
-                ><svg viewBox="0 0 105 25">
-                  <path d="M12 5c25 19 56 18 82 3m-8-1 10-1-3 10"></path>
-                </svg>
-              </div>
-              <div><strong>Amazon EC2</strong><span>Hub WireGuard + DNS + Caddy HTTPS</span></div>
-            </div>
-            <div class="panel purple overview-physical">
-              <div class="layer-heading annex2-inline-10">
-                <div class="cap purple-c">
-                  <svg class="ico"><use href="#i-server"></use></svg> Capa física · Bare metal
-                  geograficamente distribuido
-                </div>
-                <span class="chip">5 equipos en sitios diferentes · 3 hipervisores Nova</span>
-              </div>
-              <div class="physical-row">
-                <div class="physical-card">
-                  <svg class="ico"><use href="#i-server"></use></svg>
-                  <div><strong>osa-node1</strong><span>compute1 · master + worker</span></div>
-                </div>
-                <div class="physical-card">
-                  <svg class="ico annex2-inline-11"><use href="#i-server"></use></svg>
-                  <div><strong>osa-node2</strong><span>Controlador / deploy-node / NAT</span></div>
-                </div>
-                <div class="physical-card">
-                  <svg class="ico annex2-inline-12"><use href="#i-database"></use></svg>
-                  <div><strong>osa-node3</strong><span>storage1 · Cinder · monitoreo</span></div>
-                </div>
-                <div class="physical-card">
-                  <svg class="ico"><use href="#i-server"></use></svg>
-                  <div><strong>osa-node4</strong><span>compute2 · web + descriptor</span></div>
-                </div>
-                <div class="physical-card">
-                  <svg class="ico annex2-inline-13"><use href="#i-gpu"></use></svg>
-                  <div><strong>osa-node5</strong><span>compute-gpu · RTX 3060 12 GB</span></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="footer">
-            <span
-              >ICC115 · Infraestructura Cloud ·
-              <strong>Arquitectura de cinco capas y monitoreo transversal</strong></span
-            ><span class="page">27 / 30</span>
-          </div>
-        </section>
+
       <section
         aria-label="Diapositiva 28"
         class="slide annex2-slide"
@@ -2317,6 +2061,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             ><span class="page">28 / 30</span>
           </div>
         </section>
+      </section>
       <section
         aria-label="Diapositiva 29"
         class="slide annex2-slide"
@@ -2495,6 +2240,7 @@ Docente asesor: Ing. Julio Damián Morales Ayala</div>
             ><span class="page">29 / 30</span>
           </div>
         </section>
+      </section>
       <section
         aria-label="Diapositiva 30"
         class="slide annex2-slide"
